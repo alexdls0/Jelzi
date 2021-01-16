@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/titles"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bb"
+    tools:context=".Register">
+
+    <TextView
+        android:id="@+id/tvRegisterTitle"
+        style="@style/titles"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/register"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.100000024" />
+
+    <EditText
+        android:id="@+id/etUsername"
+        style="@style/etRegisterFirstEt"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="@string/username"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvRegisterTitle" />
+
+    <EditText
+        android:id="@+id/etEmail"
+        style="@style/etRegisterEt.email"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="@string/email"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etUsername" />
+
+    <EditText
+        android:id="@+id/etPass"
+        style="@style/etRegisterEt.pass"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="@string/password"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etEmail" />
+
+    <Button
+        android:id="@+id/btRegister"
+        style="@style/RegisterBt"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/btRegister"
+        app:layout_constraintEnd_toEndOf="@+id/etRepPass"
+        app:layout_constraintStart_toStartOf="@+id/etRepPass"
+        app:layout_constraintTop_toBottomOf="@+id/etRepPass" />
+
+    <EditText
+        android:id="@+id/etRepPass"
+        style="@style/etRegisterEt.pass"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="@string/repeatpass"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etPass" />
+
+    <TextView
+        android:id="@+id/tvHaveAccount"
+        style="@style/RegisterHaveAccount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/haveAccount"
+        app:layout_constraintEnd_toEndOf="@+id/btRegister"
+        app:layout_constraintStart_toStartOf="@+id/btRegister"
+        app:layout_constraintTop_toBottomOf="@+id/btRegister" />
+</androidx.constraintlayout.widget.ConstraintLayout>

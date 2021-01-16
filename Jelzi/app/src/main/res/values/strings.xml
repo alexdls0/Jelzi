@@ -1,0 +1,21 @@
+<resources>
+    <string name="app_name">Jelzi</string>
+
+    <!--REGISTRO-->
+    <string name="register">Regístrate</string>
+    <string name="btRegister">Registrarse</string>
+    <string name="haveAccount">¿Tienes ya una cuenta?</string>
+    <string name="username">Usuario</string>
+    <string name="email">Correo</string>
+    <string name="password">Contraseña</string>
+    <string name="repeatpass">Repite la contraseña</string>
+
+    <!--LOGIN-->
+    <string name="login">Jelzi</string>
+    <string name="btLogin">Entrar</string>
+    <string name="loginEmail">Correo</string>
+    <string name="loginPass">Contraseña</string>
+    <string name="forgotpass">¿Has olvidado la contraseña?</string>
+    <string name="noAccount">¿Aún no tienes cuenta?</string>
+    <string name="registerNow">Regístrate</string>
+</resources>

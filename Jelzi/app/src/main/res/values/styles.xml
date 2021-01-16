@@ -1,0 +1,130 @@
+<resources>
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+    </style>
+
+    <style name="titles">
+        <item name="android:textSize">@dimen/titles</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/colorWhite</item>
+    </style>
+
+   <!--REGISTER-->
+    <style name="etRegisterFirstEt">
+        <item name="android:layout_marginTop">@dimen/etMarginTop</item>
+        <item name="android:layout_marginStart">@dimen/etMarginSide</item>
+        <item name="android:layout_marginEnd">@dimen/etMarginSide</item>
+        <item name="android:textColor">@color/colorWhite</item>
+        <item name="android:textColorHint">@color/colorWhite</item>
+        <item name="android:background">@drawable/input_bg</item>
+        <item name="android:paddingLeft">20sp</item>
+        <item name="android:paddingRight">10sp</item>
+        <item name="android:paddingTop">10sp</item>
+        <item name="android:paddingBottom">10sp</item>
+        <item name="android:drawableLeft">@drawable/ic_person</item>
+        <item name="android:drawablePadding">@dimen/minimalPadding</item>
+    </style>
+
+    <style name="etRegisterEt">
+        <item name="android:layout_marginTop">@dimen/etSmallMarginTop</item>
+        <item name="android:layout_marginStart">@dimen/etMarginSide</item>
+        <item name="android:layout_marginEnd">@dimen/etMarginSide</item>
+        <item name="android:textColor">@color/colorWhite</item>
+        <item name="android:textColorHint">@color/colorWhite</item>
+        <item name="android:background">@drawable/input_bg</item>
+        <item name="android:paddingLeft">20sp</item>
+        <item name="android:paddingRight">10sp</item>
+        <item name="android:paddingTop">10sp</item>
+        <item name="android:paddingBottom">10sp</item>
+    </style>
+
+    <style name="etRegisterEt.email">
+        <item name="android:drawableLeft">@drawable/ic_email</item>
+        <item name="android:drawablePadding">@dimen/minimalPadding</item>
+    </style>
+
+    <style name="etRegisterEt.pass">
+        <item name="android:drawableLeft">@drawable/ic_security</item>
+        <item name="android:drawablePadding">@dimen/minimalPadding</item>
+    </style>
+
+    <style name="RegisterBt">
+        <item name="android:layout_marginTop">@dimen/btMediumMarginTop</item>
+        <item name="android:background">@drawable/btn_bg</item>
+    </style>
+
+    <style name="RegisterHaveAccount">
+        <item name="android:layout_marginTop">@dimen/etSmallMarginTop</item>
+        <item name="android:shadowColor">@color/colorWhite</item>
+        <item name="android:textColor">@color/colorWhite</item>
+    </style>
+
+    <!--LOGIN-->
+    <style name="titles.login">
+        <item name="android:textSize">@dimen/titleLogin</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/colorWhite</item>
+    </style>
+
+    <style name="etLoginFirstEt">
+        <item name="android:layout_marginTop">@dimen/etMarginTop</item>
+        <item name="android:layout_marginStart">@dimen/etMarginSide</item>
+        <item name="android:layout_marginEnd">@dimen/etMarginSide</item>
+        <item name="android:textColor">@color/colorWhite</item>
+        <item name="android:textColorHint">@color/colorWhite</item>
+        <item name="android:background">@drawable/input_bg</item>
+        <item name="android:paddingLeft">20sp</item>
+        <item name="android:paddingRight">10sp</item>
+        <item name="android:paddingTop">10sp</item>
+        <item name="android:paddingBottom">10sp</item>
+        <item name="android:drawableLeft">@drawable/ic_email</item>
+        <item name="android:drawablePadding">@dimen/minimalPadding</item>
+    </style>
+
+    <style name="etLoginEt">
+        <item name="android:layout_marginTop">@dimen/etSmallMarginTop</item>
+        <item name="android:layout_marginStart">@dimen/etMarginSide</item>
+        <item name="android:layout_marginEnd">@dimen/etMarginSide</item>
+        <item name="android:textColor">@color/colorWhite</item>
+        <item name="android:textColorHint">@color/colorWhite</item>
+        <item name="android:background">@drawable/input_bg</item>
+        <item name="android:paddingLeft">20sp</item>
+        <item name="android:paddingRight">10sp</item>
+        <item name="android:paddingTop">10sp</item>
+        <item name="android:paddingBottom">10sp</item>
+    </style>
+
+    <style name="etLoginEt.pass">
+        <item name="android:drawableLeft">@drawable/ic_security</item>
+        <item name="android:drawablePadding">@dimen/minimalPadding</item>
+    </style>
+
+    <style name="forgotpass">
+        <item name="android:layout_marginTop">@dimen/etSmallMarginTop</item>
+        <item name="android:textColor">@color/colorWhite</item>
+        <item name="android:textSize">@dimen/mediumSizeText</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="LoginBt">
+        <item name="android:layout_marginTop">@dimen/btMediumMarginTop</item>
+        <item name="android:background">@drawable/btn_bg</item>
+    </style>
+
+    <style name="LoginLinear">
+        <item name="android:layout_marginTop">@dimen/etSmallMarginTop</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+    <style name="LoginLinearText1">
+        <item name="android:textColor">@color/colorWhite</item>
+    </style>
+
+    <style name="LoginLinearText2">
+        <item name="android:layout_marginStart">@dimen/etSmallMarginTop</item>
+        <item name="android:textColor">@color/colorRed</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+</resources>
