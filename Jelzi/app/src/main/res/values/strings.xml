@@ -1,21 +1,38 @@
 <resources>
     <string name="app_name">Jelzi</string>
-
-    <!--REGISTRO-->
-    <string name="register">Regístrate</string>
-    <string name="btRegister">Registrarse</string>
-    <string name="haveAccount">¿Tienes ya una cuenta?</string>
-    <string name="username">Usuario</string>
-    <string name="email">Correo</string>
-    <string name="password">Contraseña</string>
-    <string name="repeatpass">Repite la contraseña</string>
-
-    <!--LOGIN-->
-    <string name="login">Jelzi</string>
-    <string name="btLogin">Entrar</string>
-    <string name="loginEmail">Correo</string>
-    <string name="loginPass">Contraseña</string>
-    <string name="forgotpass">¿Has olvidado la contraseña?</string>
-    <string name="noAccount">¿Aún no tienes cuenta?</string>
-    <string name="registerNow">Regístrate</string>
+    <string name="SignIn">Entrar</string>
+    <string name="SignUp">Registrarse</string>
+    <string name="or">o</string>
+    <string name="username">USUARIO</string>
+    <string name="usernameDesc">Nombre de usuario</string>
+    <string name="password">CLAVE</string>
+    <string name="passwordDesc">Contraseña</string>
+    <string name="email">EMAIL</string>
+    <string name="emailDesc">Correo electrónico</string>
+    <string name="alreadyMember">Ya tengo una cuenta</string>
+    <string name="notMember">¿Aún no tienes cuenta?</string>
+    <string name="logIn">Iniciar sesión</string>
+    <string name="agree">De acuerdo</string>
+    <string name="shortpasserror">Error de clave</string>
+    <string name="passerror">Su contraseña debe ser de al menos 6 caracteres</string>
+    <string name="invalidemail">Error de correo</string>
+    <string name="emailerror">Correo inválido</string>
+    <string name="invalidusername">Usuario inválido</string>
+    <string name="usernameerror">No puede contener espacios y debe tener de 3 a 25
+        caracteres y letras entre la A y la Z o números</string>
+    <string name="nodata">Campos vacíos</string>
+    <string name="nodataerror">Para registrarse debe rellenar los campos</string>
+    <string name="errorregistration">Error al registrar</string>
+    <string name="registrationerror">Es posible que exista un usuario con eso correo</string>
+    <string name="connectionlost">Por favor, compruebe que tenga conexión a internet</string>
+    <string name="nodataloginerror">Rellena los campos con tus credenciales para entrar</string>
+    <string name="errorlogin">Error al iniciar sesión</string>
+    <string name="loginerror">Asegúrate de que los datos introducidos sean correctos</string>
+    <string name="forgotpass">¿Has olvidado tu contraseña?</string>
+    <string name="resetpass">¿Quiere cambiar la contraseña?</string>
+    <string name="resetpassdesc">Escriba su correo y reciba un enlace para cambiarla</string>
+    <string name="change">Cambiar</string>
+    <string name="back">Volver</string>
+    <string name="emailsent">Se le ha enviado un correo para cambiar su contraseña</string>
+    <string name="emailsenterror">Se ha producido un error al enviar el correo. Asegúrate de que los datos sean correctos</string>
 </resources>

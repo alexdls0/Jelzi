@@ -4,88 +4,149 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bb"
+    style="@style/darkBackground"
     tools:context=".Login">
 
+
     <TextView
-        android:id="@+id/tvLoginTitle"
-        style="@style/titles.login"
+        android:id="@+id/tvPassword"
+        style="@style/textviews.standard"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/login"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.100000024" />
+        android:text="@string/password"
+        app:layout_constraintStart_toStartOf="@+id/guideline2"
+        app:layout_constraintTop_toBottomOf="@+id/etEmail" />
+
+    <EditText
+        android:id="@+id/etPassword"
+        style="@style/edittexts"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="@string/passwordDesc"
+        android:inputType="textPassword"
+        app:layout_constraintEnd_toStartOf="@+id/guideline3"
+        app:layout_constraintStart_toStartOf="@+id/guideline2"
+        app:layout_constraintTop_toBottomOf="@+id/tvPassword" />
 
     <EditText
         android:id="@+id/etEmail"
-        style="@style/etLoginFirstEt"
+        style="@style/edittexts"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:hint="@string/loginEmail"
-        android:inputType="textPersonName"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvLoginTitle" />
-
-    <EditText
-        android:id="@+id/etPass"
-        style="@style/etLoginEt.pass"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="@string/password"
-        android:inputType="textPersonName"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etEmail" />
+        android:hint="@string/emailDesc"
+        android:inputType="textEmailAddress"
+        app:layout_constraintEnd_toStartOf="@+id/guideline3"
+        app:layout_constraintStart_toStartOf="@+id/guideline2"
+        app:layout_constraintTop_toBottomOf="@+id/tvEmail" />
 
     <TextView
-        android:id="@+id/tvForgot"
+        android:id="@+id/tvSignUp"
+        style="@style/SignInSignUp.grey"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/SignUp"
+        app:layout_constraintBottom_toBottomOf="@+id/tvOr"
+        app:layout_constraintStart_toEndOf="@+id/tvOr"
+        app:layout_constraintTop_toTopOf="@+id/tvOr" />
+
+    <TextView
+        android:id="@+id/tvOr"
+        style="@style/SignInSignUp.separated.small"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/or"
+        app:layout_constraintBottom_toBottomOf="@+id/tvSignIn"
+        app:layout_constraintStart_toEndOf="@+id/tvSignIn"
+        app:layout_constraintTop_toTopOf="@+id/tvSignIn" />
+
+    <TextView
+        android:id="@+id/tvSignIn"
+        style="@style/SignInSignUp.white"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/SignIn"
+        app:layout_constraintStart_toStartOf="@+id/guideline2"
+        app:layout_constraintTop_toBottomOf="@+id/imageView2" />
+
+    <TextView
+        android:id="@+id/tvEmail"
+        style="@style/textviews.first"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/email"
+        app:layout_constraintStart_toStartOf="@+id/guideline2"
+        app:layout_constraintTop_toBottomOf="@+id/view" />
+
+    <TextView
+        android:id="@+id/tvNotMember"
+        style="@style/alreadyMember"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/notMember"
+        app:layout_constraintBottom_toBottomOf="@+id/btLogin"
+        app:layout_constraintStart_toEndOf="@+id/btLogin"
+        app:layout_constraintTop_toTopOf="@+id/btLogin"
+        app:layout_constraintVertical_bias="0.656" />
+
+    <Button
+        android:id="@+id/btLogin"
+        style="@style/buttons"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/logIn"
+        app:layout_constraintStart_toStartOf="@+id/guideline2"
+        app:layout_constraintTop_toBottomOf="@+id/etPassword" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.15085158" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.85" />
+
+    <View
+        android:id="@+id/view"
+        android:layout_width="0dp"
+        android:layout_height="2dp"
+        android:background="@color/colorGreen"
+        app:layout_constraintEnd_toEndOf="@+id/tvSignIn"
+        app:layout_constraintStart_toStartOf="@+id/tvSignIn"
+        app:layout_constraintTop_toBottomOf="@+id/tvSignIn" />
+
+    <View
+        android:layout_width="0dp"
+        android:layout_height="2dp"
+        android:background="@color/colorGreen"
+        app:layout_constraintEnd_toEndOf="@+id/tvNotMember"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/tvNotMember"
+        app:layout_constraintTop_toBottomOf="@+id/tvNotMember" />
+
+    <ImageView
+        android:id="@+id/imageView2"
+        style="@style/jelziimagotipo"
+        app:layout_constraintEnd_toStartOf="@+id/guideline3"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="@+id/guideline2"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/jelzi_logo" />
+
+    <TextView
+        android:id="@+id/tvForgotPass"
         style="@style/forgotpass"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/forgotpass"
-        app:layout_constraintEnd_toEndOf="@+id/etPass"
-        app:layout_constraintTop_toBottomOf="@+id/etPass" />
-
-    <Button
-        android:id="@+id/btLogin"
-        style="@style/LoginBt"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="@string/btLogin"
-        app:layout_constraintEnd_toEndOf="@+id/etPass"
-        app:layout_constraintStart_toStartOf="@+id/etPass"
-        app:layout_constraintTop_toBottomOf="@+id/tvForgot" />
-
-    <LinearLayout
-        android:id="@+id/Llayout"
-        style="@style/LoginLinear"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="@+id/btLogin"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/btLogin"
-        app:layout_constraintTop_toBottomOf="@+id/btLogin">
-
-        <TextView
-            style="@style/LoginLinearText1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/noAccount" />
-
-        <TextView
-            android:id="@+id/tvRegister"
-            style="@style/LoginLinearText2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/registerNow" />
-
-    </LinearLayout>
+        app:layout_constraintStart_toStartOf="@+id/guideline2"
+        app:layout_constraintTop_toBottomOf="@+id/btLogin" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
