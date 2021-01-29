@@ -113,7 +113,7 @@ public class Login extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
                             Log.d(TAG, "userLogin:success");
-                            goMain();
+                            hasTracing();
                         } else {
                             Log.w(TAG, "userLogin:failure", task.getException());
                             AlertDialog.Builder builder = new AlertDialog.Builder(Login.this);
