@@ -4,7 +4,11 @@ apply plugin: 'com.google.gms.google-services'
 android {
     compileSdkVersion 29
     buildToolsVersion "30.0.1"
-
+    buildFeatures {
+        dataBinding true
+        // for view binding:
+        viewBinding true
+    }
     defaultConfig {
         applicationId "com.example.jelzi"
         minSdkVersion 21

@@ -114,4 +114,21 @@
     <style name="cardFood">
         <item name="android:textSize">@dimen/smallSize</item>
     </style>
+    <style name="FirstCalcTittles">
+        <item name="android:textSize">@dimen/bigSize</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textColor">@color/colorWhite</item>
+    </style>
+    <style name="FirstCalcTextSelects">
+        <item name="android:textSize">@dimen/mediumSize</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textColor">@color/colorWhite</item>
+    </style>
+
+    <style name="ThemeOverlay.NumberPicker" parent="AppTheme" >
+        <item name="colorControlNormal">@color/colorGreen</item>
+        <item name="colorControlActivated">@color/colorGreen</item>
+        <item name="colorControlHighlight">@color/colorGreen</item>
+        <item name="android:textColorPrimary">@color/colorWhite</item>
+    </style>
 </resources>
