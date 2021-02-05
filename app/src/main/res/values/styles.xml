@@ -131,4 +131,5 @@
         <item name="colorControlHighlight">@color/colorGreen</item>
         <item name="android:textColorPrimary">@color/colorWhite</item>
     </style>
+
 </resources>
