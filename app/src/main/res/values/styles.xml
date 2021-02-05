@@ -132,4 +132,9 @@
         <item name="android:textColorPrimary">@color/colorWhite</item>
     </style>
 
+    <style name="loadingtextview">
+        <item name="android:textSize">@dimen/smallSize</item>
+        <item name="android:layout_marginTop">@dimen/halfMediumSize</item>
+    </style>
+
 </resources>
