@@ -1,20 +1,23 @@
 package com.example.jelzi;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
+import androidx.viewpager2.widget.ViewPager2;
 
 import android.os.Bundle;
 
 import com.example.jelzi.adapter.PagerAdapter;
+import com.google.android.material.badge.BadgeDrawable;
 import com.google.android.material.tabs.TabItem;
 import com.google.android.material.tabs.TabLayout;
+import com.google.android.material.tabs.TabLayoutMediator;
 
 public class Tracing extends AppCompatActivity {
 
     private TabLayout tabLayout;
-    private ViewPager viewPager;
-    private TabItem tiSeguimiento, tiGrafica, tiFicha;
-    private PagerAdapter pagerAdapter;
+    private ViewPager2 viewPager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,31 +29,27 @@ public class Tracing extends AppCompatActivity {
     private void init() {
         tabLayout = findViewById(R.id.tabLayout);
         viewPager = findViewById(R.id.viewPager);
-        tiSeguimiento = findViewById(R.id.tiSeguimiento);
-        tiGrafica = findViewById(R.id.tiGrafica);
-        tiFicha = findViewById(R.id.tiFicha);
+        viewPager.setAdapter(new PagerAdapter(this));
 
-        pagerAdapter = new PagerAdapter(getSupportFragmentManager(), tabLayout.getTabCount());
-        viewPager.setAdapter(pagerAdapter);
-        tabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+        final TabLayoutMediator tabLayoutMediator = new TabLayoutMediator(tabLayout, viewPager, new TabLayoutMediator.TabConfigurationStrategy() {
             @Override
-            public void onTabSelected(TabLayout.Tab tab) {
-                viewPager.setCurrentItem(tab.getPosition());
-                if(tab.getPosition() == 0 || tab.getPosition() == 1 || tab.getPosition() == 2){
-                    pagerAdapter.notifyDataSetChanged();
+            public void onConfigureTab(@NonNull TabLayout.Tab tab, int position) {
+                switch (position){
+                    case 0:{
+                        tab.setIcon(R.drawable.ic_food);
+                        break;
+                    }
+                    case 1: {
+                        tab.setIcon(R.drawable.ic_grafica);
+                        break;
+                    }
+                    case 2: {
+                        tab.setIcon(R.drawable.ic_userinfo);
+                        break;
+                    }
                 }
             }
-
-            @Override
-            public void onTabUnselected(TabLayout.Tab tab) {
-
-            }
-
-            @Override
-            public void onTabReselected(TabLayout.Tab tab) {
-
-            }
         });
-        viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
+        tabLayoutMediator.attach();
     }
 }

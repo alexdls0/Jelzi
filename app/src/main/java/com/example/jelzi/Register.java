@@ -13,6 +13,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.example.jelzi.model.LoadingDialog;
 import com.example.jelzi.model.Utils;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -31,6 +32,7 @@ public class Register extends AppCompatActivity {
     private Button btRegister;
     private TextView alreadyMember, singIn;
     private final Utils utils = new Utils();
+    private LoadingDialog loadingDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +42,7 @@ public class Register extends AppCompatActivity {
     }
 
     private void init() {
+        loadingDialog = new LoadingDialog(Register.this);
         mAuth = FirebaseAuth.getInstance();
         etUsername = findViewById(R.id.etUsername);
         etEmail = findViewById(R.id.etEmail);
@@ -143,6 +146,7 @@ public class Register extends AppCompatActivity {
     }
 
     private void doRegister(String email, String pass,final String name) {
+        loadingDialog.startLoadingDialog();
         mAuth.createUserWithEmailAndPassword(email, pass).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
@@ -153,6 +157,7 @@ public class Register extends AppCompatActivity {
                     goLogin();
                 } else {
                     Log.w(TAG, "userRegistration:failure", task.getException());
+                    loadingDialog.endLoadingDialog();
                     AlertDialog.Builder builder = new AlertDialog.Builder(Register.this);
                     builder.setTitle(getString(R.string.errorregistration));
                     builder.setMessage(getString(R.string.registrationerror));

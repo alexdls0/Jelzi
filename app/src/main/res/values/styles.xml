@@ -114,4 +114,9 @@
     <style name="cardFood">
         <item name="android:textSize">@dimen/smallSize</item>
     </style>
+
+    <style name="loadingtextview">
+        <item name="android:textSize">@dimen/smallSize</item>
+        <item name="android:layout_marginTop">@dimen/halfMediumSize</item>
+    </style>
 </resources>

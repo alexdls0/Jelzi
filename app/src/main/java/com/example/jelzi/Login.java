@@ -13,6 +13,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.example.jelzi.model.LoadingDialog;
 import com.example.jelzi.model.Utils;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -35,6 +36,7 @@ public class Login extends AppCompatActivity {
     private Button btLogin;
     private TextView notMember, forgotPass, signUp;
     private final Utils utils = new Utils();
+    private LoadingDialog loadingDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +46,7 @@ public class Login extends AppCompatActivity {
     }
 
     private void init() {
+        loadingDialog = new LoadingDialog(Login.this);
         mAuth = FirebaseAuth.getInstance();
         etEmail = findViewById(R.id.etEmail);
         etPassword = findViewById(R.id.etPassword);
@@ -53,6 +56,7 @@ public class Login extends AppCompatActivity {
         signUp = findViewById(R.id.tvSignUp);
 
         if(mAuth.getCurrentUser() != null){
+            loadingDialog.startLoadingDialog();
             hasTracing();
         }
 
@@ -107,6 +111,7 @@ public class Login extends AppCompatActivity {
     }
 
     private void doLogin(String email, String pass) {
+        loadingDialog.startLoadingDialog();
         mAuth.signInWithEmailAndPassword(email, pass)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
@@ -116,6 +121,7 @@ public class Login extends AppCompatActivity {
                             hasTracing();
                         } else {
                             Log.w(TAG, "userLogin:failure", task.getException());
+                            loadingDialog.endLoadingDialog();
                             AlertDialog.Builder builder = new AlertDialog.Builder(Login.this);
                             builder.setTitle(getString(R.string.errorlogin));
                             builder.setMessage(getString(R.string.loginerror));
@@ -136,11 +142,12 @@ public class Login extends AppCompatActivity {
 
     public void goMain(){
         Intent intent = new Intent(Login.this, MainActivity.class);
+        loadingDialog.endLoadingDialog();
         startActivity(intent);
         finish();
     }
 
-    public boolean hasTracing(){
+    public void hasTracing(){
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("users").child(mAuth.getCurrentUser().getUid());
         databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -157,11 +164,11 @@ public class Login extends AppCompatActivity {
             public void onCancelled(@NonNull DatabaseError error) {
             }
         });
-        return false;
     }
 
     public void goTracing(){
         Intent intent = new Intent(Login.this, Tracing.class);
+        loadingDialog.endLoadingDialog();
         startActivity(intent);
         finish();
     }

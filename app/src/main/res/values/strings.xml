@@ -40,4 +40,5 @@
     <string name="carbh">Carbh</string>
     <string name="cals">Cals</string>
     <string name="grasa">Grasa</string>
+    <string name="loading">Cargando...</string>
 </resources>
