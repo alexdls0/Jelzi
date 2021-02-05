@@ -46,6 +46,7 @@
     <string name="genderText">Selecciona tu género</string>
     <string name="menButton">Hombre</string>
     <string name="womenButton">Mujer</string>
+    <string name="loading">Cargando</string>
     <string name="ageText">Selecciona tu edad</string>
     <string name="heightText">Introduce tu altura en cm</string>
     <string name="weightText">Introduce tu peso en Kg</string>
