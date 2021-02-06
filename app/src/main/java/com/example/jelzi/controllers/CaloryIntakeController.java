@@ -2,7 +2,7 @@ package com.example.jelzi.controllers;
 
 import java.util.HashMap;
 
-public class caloryIntakeController {
+public class CaloryIntakeController {
 
     public int calcTMB(int height, int weight, int age, boolean gender){
         int TMB=0;

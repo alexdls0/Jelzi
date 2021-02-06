@@ -10,7 +10,7 @@ public class User implements Parcelable {
     public int age;
     public boolean gender;//True women, False men
     public int weight;//In Kg
-    public int TMB;
+    public int tmb;
     public double activity;
     public int dailyCals;
     public int objective;// 1 lose weigth, 2 maintenance, 3 gain weight
@@ -28,7 +28,7 @@ public class User implements Parcelable {
         age = in.readInt();
         gender = in.readByte() != 0;
         weight = in.readInt();
-        TMB = in.readInt();
+        tmb = in.readInt();
         activity = in.readDouble();
         dailyCals = in.readInt();
     }
@@ -65,8 +65,8 @@ public class User implements Parcelable {
         this.weight = weight;
     }
 
-    public void setTMB(int TMB) {
-        this.TMB = TMB;
+    public void setTmb(int tmb) {
+        this.tmb = tmb;
     }
 
     public void setActivity(double activity) {
@@ -86,7 +86,7 @@ public class User implements Parcelable {
                 ", age=" + age +
                 ", gender=" + gender +
                 ", weight=" + weight +
-                ", TMB=" + TMB +
+                ", TMB=" + tmb +
                 ", activity=" + activity +
                 ", dailyCals=" + dailyCals +
                 '}';
@@ -105,7 +105,7 @@ public class User implements Parcelable {
         parcel.writeInt(age);
         parcel.writeByte((byte) (gender ? 1 : 0));
         parcel.writeInt(weight);
-        parcel.writeInt(TMB);
+        parcel.writeInt(tmb);
         parcel.writeDouble(activity);
         parcel.writeInt(dailyCals);
     }

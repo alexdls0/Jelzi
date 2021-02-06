@@ -7,68 +7,47 @@
     android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/noneActivity"
-        style="@style/FirstCalcTextSelects"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:text="@string/noneActivity"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView10" />
-
-    <TextView
         android:id="@+id/textView10"
         style="@style/FirstCalcTittles"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="64dp"
-        android:text="@string/activityText"
+        android:text="@string/objectiveTextt"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/lowActivity"
+        android:id="@+id/lossWeight"
         style="@style/FirstCalcTextSelects"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:text="@string/lowActivity"
+        android:layout_marginTop="64dp"
+        android:text="@string/lossWeight"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/noneActivity" />
+        app:layout_constraintTop_toBottomOf="@+id/textView10" />
 
     <TextView
-        android:id="@+id/midActivity"
+        android:id="@+id/maintenanceWeight"
         style="@style/FirstCalcTextSelects"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
-        android:text="@string/midActivity"
+        android:text="@string/maintenanceWeight"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/lowActivity" />
+        app:layout_constraintTop_toBottomOf="@+id/lossWeight" />
 
     <TextView
-        android:id="@+id/strongActivity"
+        android:id="@+id/gainWeight"
         style="@style/FirstCalcTextSelects"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
-        android:text="@string/strongActivity"
+        android:text="@string/gainWeight"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/midActivity" />
+        app:layout_constraintTop_toBottomOf="@+id/maintenanceWeight" />
 
-    <TextView
-        android:id="@+id/professionalActivity"
-        style="@style/FirstCalcTextSelects"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:text="@string/profActivity"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/strongActivity" />
 </androidx.constraintlayout.widget.ConstraintLayout>

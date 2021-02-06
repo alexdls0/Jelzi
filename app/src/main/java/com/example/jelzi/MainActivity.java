@@ -14,6 +14,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.example.jelzi.adapter.FirstCalcAdapter;
+import com.example.jelzi.controllers.CaloryIntakeController;
 import com.example.jelzi.databinding.ActivityMainBinding;
 import com.example.jelzi.interfaces.FirstCalcInterface;
 import com.example.jelzi.model.User;
@@ -33,7 +34,8 @@ public class MainActivity extends AppCompatActivity implements FirstCalcInterfac
     private FirebaseAuth mAuth;
     private DatabaseReference databaseReference;
     private User user;
-    private Boolean canGoNext=true;
+    boolean genderPage;
+
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,7 +73,8 @@ public class MainActivity extends AppCompatActivity implements FirstCalcInterfac
                 R.layout.first_calc_intake_age,
                 R.layout.first_calc_intake_height,
                 R.layout.first_calc_intake_weight,
-                R.layout.first_calc_intake_activity,};
+                R.layout.first_calc_intake_activity,
+                R.layout.first_calc_intake_objective,};
 
         mAdapter = new FirstCalcAdapter(layouts,this,this,user);
         binding.viewPager.setUserInputEnabled(false);
@@ -102,7 +105,6 @@ public class MainActivity extends AppCompatActivity implements FirstCalcInterfac
         int current = getItem(+1);
         if (current < layouts.length) {
             // move to next screen
-            canGoNext=false;
             binding.viewPager.setCurrentItem(current);
         }else{
             launchSession();
@@ -114,7 +116,7 @@ public class MainActivity extends AppCompatActivity implements FirstCalcInterfac
         if (current >= 0) {
             // move to back screen
             if (current==0){
-                canGoNext=true;
+                binding.btnNext.setVisibility(View.VISIBLE);
             }
             binding.viewPager.setCurrentItem(current);
         } else {
@@ -157,12 +159,31 @@ public class MainActivity extends AppCompatActivity implements FirstCalcInterfac
         @Override
         public void onPageSelected(int position) {
             super.onPageSelected(position);
-
             addBottomDots(position);
-            if(canGoNext){
-                binding.btnNext.setVisibility(View.VISIBLE);
-            }else{
-                binding.btnNext.setVisibility(View.GONE);
+            binding.btnNext.setVisibility(View.INVISIBLE);
+            switch (position){
+                case 0:
+                    binding.btnNext.setVisibility(View.VISIBLE);
+                case 1:
+                    if(genderPage){
+                        binding.btnNext.setVisibility(View.VISIBLE);
+                    }
+                case 2:
+                    if (user.age>0){
+                        binding.btnNext.setVisibility(View.VISIBLE);
+                    }
+                case 3:
+                    if (user.height>0){
+                        binding.btnNext.setVisibility(View.VISIBLE);
+                    }
+                case 4:
+                    if (user.weight>0){
+                        binding.btnNext.setVisibility(View.VISIBLE);
+                    }
+                case 5:
+                    if (user.activity>0){
+                        binding.btnNext.setVisibility(View.VISIBLE);
+                    }
             }
             if (position == 0) {
                 binding.btnBack.setVisibility(View.GONE);
@@ -177,37 +198,54 @@ public class MainActivity extends AppCompatActivity implements FirstCalcInterfac
     @Override
     public void selectedGender(Boolean gender) {
         user.gender=gender;
-        canGoNext=true;
+        binding.btnNext.setVisibility(View.VISIBLE);
+        genderPage=true;
     }
 
     @Override
     public void selectedAge(int age) {
         user.age=age;
-        canGoNext=true;
+        binding.btnNext.setVisibility(View.VISIBLE);
+
     }
 
     @Override
     public void selectedHeight(int height) {
         user.height=height;
-        canGoNext=true;
+        binding.btnNext.setVisibility(View.VISIBLE);
     }
 
     @Override
     public void selectedWeight(int weight) {
         user.weight=weight;
-        canGoNext=true;
+        binding.btnNext.setVisibility(View.VISIBLE);
+
     }
 
     @Override
     public void selectedActivity(double activity) {
         user.activity=activity;
-        canGoNext=true;
+        binding.btnNext.setVisibility(View.VISIBLE);
     }
 
     @Override
     public void selectedObjective(int objective) {
         user.objective=objective;
-        //Calc Tmb and daily cals req
-        canGoNext=true;
+        //Calc Tmb and daily cals and macros
+        CaloryIntakeController caloryIntakeController= new CaloryIntakeController();
+        user.tmb =caloryIntakeController.calcTMB(user.height,user.weight,user.age,user.gender);
+        System.out.println("tmb: "+user.tmb);
+        user.dailyCals=caloryIntakeController.calcDailyCalsIntake(user.tmb,user.activity,user.objective);
+        System.out.println("dailyCals: "+user.dailyCals);
+        System.out.println("macros: "+caloryIntakeController.calcMacros(user.dailyCals,user.weight,true));
+        System.out.println(user);
+        binding.btnNext.setVisibility(View.VISIBLE);
+        saveTracingFirebase();
+    }
+
+    private void saveTracingFirebase() {
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("users").child(mAuth.getCurrentUser().getUid()).child("tracing");
+        databaseReference.setValue(user);
+
     }
 }

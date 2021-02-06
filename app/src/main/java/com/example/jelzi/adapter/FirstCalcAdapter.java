@@ -50,17 +50,164 @@ public class FirstCalcAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
             putSelectGenderListeners(currentView);
         }
         if (position==2){
-            //gender select
+            //age select
             putSelectAgeListeners(currentView);
         }
+        if (position==3){
+            //height select
+            putSelectHeightListeners(currentView);
+        }
+        if (position==4){
+            //weight select
+            putSelectWeightListeners(currentView);
+        }
+        if (position==5){
+            //activity select
+            putSelectActivityListeners(currentView);
+        }
+        if (position==6){
+            //objective select
+            putSelectObjectiveListeners(currentView);
+        }
+
+    }
+
+    private void putSelectObjectiveListeners(View currentView) {
+        final TextView loss= currentView.findViewById(R.id.lossWeight);
+        final TextView maint= currentView.findViewById(R.id.maintenanceWeight);
+        final TextView gain= currentView.findViewById(R.id.gainWeight);
+
+        loss.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                firstCalcInterface.selectedObjective(1);
+                loss.setTextColor(context.getResources().getColor(R.color.colorGreen));
+                maint.setTextColor(context.getResources().getColor(R.color.colorWhite));
+                gain.setTextColor(context.getResources().getColor(R.color.colorWhite));
+            }
+        });
+        maint.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                firstCalcInterface.selectedObjective(2);
+                loss.setTextColor(context.getResources().getColor(R.color.colorWhite));
+                maint.setTextColor(context.getResources().getColor(R.color.colorGreen));
+                gain.setTextColor(context.getResources().getColor(R.color.colorWhite));
+            }
+        });
+        gain.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                firstCalcInterface.selectedObjective(3);
+                loss.setTextColor(context.getResources().getColor(R.color.colorWhite));
+                maint.setTextColor(context.getResources().getColor(R.color.colorWhite));
+                gain.setTextColor(context.getResources().getColor(R.color.colorGreen));
+            }
+        });
+    }
+
+    private void putSelectActivityListeners(View currentView) {
+        final TextView none= currentView.findViewById(R.id.noneActivity);
+        final TextView low= currentView.findViewById(R.id.lowActivity);
+        final TextView mid= currentView.findViewById(R.id.midActivity);
+        final TextView high= currentView.findViewById(R.id.strongActivity);
+        final TextView prof= currentView.findViewById(R.id.professionalActivity);
+
+        none.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                firstCalcInterface.selectedActivity(1.2);
+                none.setTextColor(context.getResources().getColor(R.color.colorGreen));
+                low.setTextColor(context.getResources().getColor(R.color.colorWhite));
+                mid.setTextColor(context.getResources().getColor(R.color.colorWhite));
+                high.setTextColor(context.getResources().getColor(R.color.colorWhite));
+                prof.setTextColor(context.getResources().getColor(R.color.colorWhite));
+            }
+        });
+        low.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                firstCalcInterface.selectedActivity(1.375);
+                none.setTextColor(context.getResources().getColor(R.color.colorWhite));
+                low.setTextColor(context.getResources().getColor(R.color.colorGreen));
+                mid.setTextColor(context.getResources().getColor(R.color.colorWhite));
+                high.setTextColor(context.getResources().getColor(R.color.colorWhite));
+                prof.setTextColor(context.getResources().getColor(R.color.colorWhite));
+            }
+        });
+        mid.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                firstCalcInterface.selectedActivity(1.55);
+                none.setTextColor(context.getResources().getColor(R.color.colorWhite));
+                low.setTextColor(context.getResources().getColor(R.color.colorWhite));
+                mid.setTextColor(context.getResources().getColor(R.color.colorGreen));
+                high.setTextColor(context.getResources().getColor(R.color.colorWhite));
+                prof.setTextColor(context.getResources().getColor(R.color.colorWhite));
+            }
+        });
+        high.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                firstCalcInterface.selectedActivity(1.725);
+                none.setTextColor(context.getResources().getColor(R.color.colorWhite));
+                low.setTextColor(context.getResources().getColor(R.color.colorWhite));
+                mid.setTextColor(context.getResources().getColor(R.color.colorWhite));
+                high.setTextColor(context.getResources().getColor(R.color.colorGreen));
+                prof.setTextColor(context.getResources().getColor(R.color.colorWhite));
+            }
+        });
+        prof.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                firstCalcInterface.selectedActivity(1.9);
+                none.setTextColor(context.getResources().getColor(R.color.colorWhite));
+                low.setTextColor(context.getResources().getColor(R.color.colorWhite));
+                mid.setTextColor(context.getResources().getColor(R.color.colorWhite));
+                high.setTextColor(context.getResources().getColor(R.color.colorWhite));
+                prof.setTextColor(context.getResources().getColor(R.color.colorGreen));
+            }
+        });
 
 
+    }
+
+    private void putSelectWeightListeners(View currentView) {
+        NumberPicker WeightPicker=((NumberPicker) currentView.findViewById(R.id.weightPicker));
+        WeightPicker.setMinValue(15);
+        WeightPicker.setMaxValue(300);
+        WeightPicker.setValue(60);
+        WeightPicker.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
+            @Override
+            public void onValueChange(NumberPicker numberPicker, int i, int i1) {
+                firstCalcInterface.selectedWeight(i);
+            }
+        });
+    }
+    private void putSelectHeightListeners(View currentView) {
+        NumberPicker HeightPicker=((NumberPicker) currentView.findViewById(R.id.heightPicker));
+        HeightPicker.setMinValue(50);
+        HeightPicker.setMaxValue(250);
+        HeightPicker.setValue(150);
+        HeightPicker.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
+            @Override
+            public void onValueChange(NumberPicker numberPicker, int i, int i1) {
+                firstCalcInterface.selectedHeight(i);
+            }
+        });
     }
 
     private void putSelectAgeListeners(View currentView) {
         NumberPicker AgePicker=((NumberPicker) currentView.findViewById(R.id.agePicker));
         AgePicker.setMinValue(1);
         AgePicker.setMaxValue(99);
+        AgePicker.setValue(25);
+        AgePicker.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
+            @Override
+            public void onValueChange(NumberPicker numberPicker, int i, int i1) {
+                firstCalcInterface.selectedAge(i);
+            }
+        });
     }
 
     private void putSelectWelcomeListeners(View currentView) {
@@ -72,7 +219,7 @@ public class FirstCalcAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
         final ImageView womenIcon=(ImageView)currentView.findViewById(R.id.womenIcon);
         TextView menButton=(TextView) currentView.findViewById(R.id.menButton);
         TextView  womenButton=(TextView) currentView.findViewById(R.id.womenButton);
-
+        System.out.println("something");
         menButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
