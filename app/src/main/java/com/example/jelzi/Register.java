@@ -154,6 +154,7 @@ public class Register extends AppCompatActivity {
                     Log.d(TAG, "userRegistration:success");
                     databaseReference = FirebaseDatabase.getInstance().getReference();
                     databaseReference.child("users/"+mAuth.getCurrentUser().getUid()+"/userName").setValue(name);
+                    loadingDialog.endLoadingDialog();
                     goLogin();
                 } else {
                     Log.w(TAG, "userRegistration:failure", task.getException());

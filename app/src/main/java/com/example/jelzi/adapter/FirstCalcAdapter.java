@@ -174,13 +174,13 @@ public class FirstCalcAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
 
     private void putSelectWeightListeners(View currentView) {
         NumberPicker WeightPicker=((NumberPicker) currentView.findViewById(R.id.weightPicker));
-        WeightPicker.setMinValue(15);
-        WeightPicker.setMaxValue(300);
+        WeightPicker.setMinValue(30);
+        WeightPicker.setMaxValue(200);
         WeightPicker.setValue(60);
         WeightPicker.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
             @Override
             public void onValueChange(NumberPicker numberPicker, int i, int i1) {
-                firstCalcInterface.selectedWeight(i);
+                firstCalcInterface.selectedWeight(i1);
             }
         });
     }
@@ -192,20 +192,20 @@ public class FirstCalcAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
         HeightPicker.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
             @Override
             public void onValueChange(NumberPicker numberPicker, int i, int i1) {
-                firstCalcInterface.selectedHeight(i);
+                firstCalcInterface.selectedHeight(i1);
             }
         });
     }
 
     private void putSelectAgeListeners(View currentView) {
         NumberPicker AgePicker=((NumberPicker) currentView.findViewById(R.id.agePicker));
-        AgePicker.setMinValue(1);
+        AgePicker.setMinValue(16);
         AgePicker.setMaxValue(99);
         AgePicker.setValue(25);
         AgePicker.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
             @Override
             public void onValueChange(NumberPicker numberPicker, int i, int i1) {
-                firstCalcInterface.selectedAge(i);
+                firstCalcInterface.selectedAge(i1);
             }
         });
     }
