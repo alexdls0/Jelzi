@@ -148,11 +148,11 @@ public class Login extends AppCompatActivity {
     }
 
     public void hasTracing(){
-        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("users").child(mAuth.getCurrentUser().getUid());
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("users").child(mAuth.getCurrentUser().getUid()+"/tracing");
         databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                if(dataSnapshot.hasChild("tracing")){
+                if(dataSnapshot.hasChild("dailyCals")){
                     goTracing();
                 }
                 else{

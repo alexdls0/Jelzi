@@ -17,6 +17,9 @@ import android.view.ViewGroup;
 import com.example.jelzi.R;
 import com.example.jelzi.adapter.FoodAdapter;
 import com.example.jelzi.model.Food;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
 
@@ -27,6 +30,8 @@ public class Foods extends Fragment {
     private RecyclerView rvFoods;
     private ArrayList<Food> foodList;
     private FoodAdapter foodAdapter;
+    private FirebaseAuth mAuth;
+    private DatabaseReference databaseReference;
 
     public Foods() {
         // Required empty public constructor
@@ -38,19 +43,18 @@ public class Foods extends Fragment {
         View view = inflater.inflate(R.layout.fragment_foods, container, false);
         rvFoods = view.findViewById(R.id.rvFoods);
         rvFoods.setLayoutManager(new LinearLayoutManager(getContext()));
+        mAuth = FirebaseAuth.getInstance();
+        databaseReference = FirebaseDatabase.getInstance().getReference();
 
         foodList = new ArrayList<>();
-
-        Food comida1 = new Food("Pizza", 32, 12, 28, 160.55 );
-        foodList.add(comida1);
-        Food comida2 = new Food("Hamburguesa", 122, 97, 34, 6743 );
-        foodList.add(comida2);
-        Food comida3 = new Food("Ensalada", 156, 43, 89, 2434.55 );
-        foodList.add(comida3);
-        foodList.add(comida3);
-        foodList.add(comida3);
-        foodList.add(comida3);
         //Rellenar ese arraylist con las comidas del día actual que tenga el usuario
+        Food comida1 = new Food("Pizza", "adefsfsdf", 32, 12, 28, 160.55 );
+        foodList.add(comida1);
+        Food comida2 = new Food("Hamburguesa", "o34brio3bfonrf", 122, 97, 34, 6743 );
+        foodList.add(comida2);
+        Food comida3 = new Food("Ensalada", "edsgsbir", 156, 43, 89, 2434.55 );
+        foodList.add(comida3);
+
         foodAdapter = new FoodAdapter(foodList);
         rvFoods.setAdapter(foodAdapter);
 
@@ -70,6 +74,8 @@ public class Foods extends Fragment {
         public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
             int position = viewHolder.getAdapterPosition();
             //Borrar adecuadamente la comida
+            databaseReference.child("users/"+mAuth.getCurrentUser().getUid()+"/foods").
+                    child(foodList.get(position).getFoodKey()).removeValue();
             foodList.remove(position);
             foodAdapter.notifyItemRemoved(position);
         }

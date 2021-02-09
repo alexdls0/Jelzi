@@ -48,7 +48,7 @@ public class MainActivity extends AppCompatActivity implements FirstCalcInterfac
     private void createUser() {
         mAuth = FirebaseAuth.getInstance();
         databaseReference = FirebaseDatabase.getInstance().getReference();
-        databaseReference.child("users/"+mAuth.getCurrentUser().getUid()+"/userName").addValueEventListener(new ValueEventListener() {
+        databaseReference.child("users/"+mAuth.getCurrentUser().getUid()+"/tracing/userName").addValueEventListener(new ValueEventListener() {
             @RequiresApi(api = Build.VERSION_CODES.M)
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {

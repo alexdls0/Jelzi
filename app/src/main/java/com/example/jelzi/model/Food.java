@@ -2,18 +2,27 @@ package com.example.jelzi.model;
 
 public class Food {
 
-    private String foodName;
+    private String foodName, foodKey;
     private double fat, prot, carbh, cals;
 
     public Food(){
     }
 
-    public Food(String foodName, double fat, double prot, double carbh, double cals) {
+    public Food(String foodName, String foodKey, double fat, double prot, double carbh, double cals) {
         this.foodName = foodName;
+        this.foodKey = foodKey;
         this.fat = fat;
         this.prot = prot;
         this.carbh = carbh;
         this.cals = cals;
+    }
+
+    public String getFoodKey() {
+        return foodKey;
+    }
+
+    public void setFoodKey(String foodKey) {
+        this.foodKey = foodKey;
     }
 
     public String getFoodName() {

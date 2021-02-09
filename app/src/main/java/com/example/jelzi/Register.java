@@ -153,9 +153,9 @@ public class Register extends AppCompatActivity {
                 if (task.isSuccessful()) {
                     Log.d(TAG, "userRegistration:success");
                     databaseReference = FirebaseDatabase.getInstance().getReference();
-                    databaseReference.child("users/"+mAuth.getCurrentUser().getUid()+"/userName").setValue(name);
+                    databaseReference.child("users/"+mAuth.getCurrentUser().getUid()+"/tracing/userName").setValue(name);
                     loadingDialog.endLoadingDialog();
-                    goLogin();
+                    goMain();
                 } else {
                     Log.w(TAG, "userRegistration:failure", task.getException());
                     loadingDialog.endLoadingDialog();
@@ -180,6 +180,13 @@ public class Register extends AppCompatActivity {
         Intent intent = new Intent(Register.this, Login.class);
         startActivity(intent);
         overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
+        finish();
+    }
+
+    public void goMain(){
+        Intent intent = new Intent(Register.this, MainActivity.class);
+        loadingDialog.endLoadingDialog();
+        startActivity(intent);
         finish();
     }
 }
