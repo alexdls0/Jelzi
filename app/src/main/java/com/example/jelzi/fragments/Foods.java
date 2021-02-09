@@ -73,7 +73,6 @@ public class Foods extends Fragment {
         @Override
         public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
             int position = viewHolder.getAdapterPosition();
-            //Borrar adecuadamente la comida
             databaseReference.child("users/"+mAuth.getCurrentUser().getUid()+"/foods").
                     child(foodList.get(position).getFoodKey()).removeValue();
             foodList.remove(position);
