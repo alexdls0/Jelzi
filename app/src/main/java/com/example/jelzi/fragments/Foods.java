@@ -94,18 +94,20 @@ public class Foods extends Fragment {
             @RequiresApi(api = Build.VERSION_CODES.M)
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                user= snapshot.getValue(User.class);
-                //Update user values if occur any change
-                CaloryIntakeController caloryIntakeController= new CaloryIntakeController();
-                user.tmb =caloryIntakeController.calcTMB(user.height,user.weight,user.age,user.gender);
-                user.dailyCals=caloryIntakeController.calcDailyCalsIntake(user.tmb,user.activity,user.objective);
-                HashMap<String,Integer> macros = caloryIntakeController.calcMacros(user.dailyCals,user.weight,user.highProtein);
-                user.fats=macros.get("fats");
-                user.carbs=macros.get("carbs");
-                user.prot=macros.get("prot");
-                databaseReference.setValue(user);
-                putDayData();
-                putDayMoments();
+                if(snapshot.hasChild("dailyCals")){
+                    user= snapshot.getValue(User.class);
+                    //Update user values if occur any change
+                    CaloryIntakeController caloryIntakeController= new CaloryIntakeController();
+                    user.tmb =caloryIntakeController.calcTMB(user.height,user.weight,user.age,user.gender);
+                    user.dailyCals=caloryIntakeController.calcDailyCalsIntake(user.tmb,user.activity,user.objective);
+                    HashMap<String,Integer> macros = caloryIntakeController.calcMacros(user.dailyCals,user.weight,user.highProtein);
+                    user.fats=macros.get("fats");
+                    user.carbs=macros.get("carbs");
+                    user.prot=macros.get("prot");
+                    databaseReference.setValue(user);
+                    putDayData();
+                    putDayMoments();
+                }
             }
 
             @Override

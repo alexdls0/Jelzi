@@ -73,7 +73,7 @@
     <string name="profileObjective">Objetivo</string>
     <string name="profileHighProtein">Tipo de dieta</string>
     <string name="logout">Cerrar sesión</string>
-    <string name="removeTracing">Borrar mi seguimiento</string>
+    <string name="removeTracing">Borrar seguimiento</string>
     <string name="highProteinDiet">Alta en proteínas</string>
     <string name="normalDiet">Normal</string>
 </resources>
