@@ -168,8 +168,6 @@ public class FirstCalcAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
                 prof.setTextColor(context.getResources().getColor(R.color.colorGreen));
             }
         });
-
-
     }
 
     private void putSelectWeightListeners(View currentView) {
@@ -253,8 +251,6 @@ public class FirstCalcAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
             }
         });
     }
-
-
 
     @Override
     public int getItemViewType(int position) {

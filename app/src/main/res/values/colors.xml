@@ -2,9 +2,10 @@
 <resources>
     <color name="colorWhite">#FFFFFF</color>
     <color name="colorGrey">#91969E</color>
+    <color name="colorLightGrey">#BBBBBB</color>
     <color name="colorBackground">#374961</color>
     <color name="colorGreen">#6cdd64</color>
-    <color name="colorRed">#C52A37</color>
+    <color name="colorRed">#E35E69</color>
     <color name="white">#FFFFFF</color>
     <color name="colorBackgroundCards">#2F3F53</color>
 </resources>
