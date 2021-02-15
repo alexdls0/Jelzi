@@ -14,11 +14,18 @@ public class User implements Parcelable {
     public double activity;
     public int dailyCals;
     public int objective;// 1 lose weigth, 2 maintenance, 3 gain weight
-
+    public int prot;
+    public int carbs;
+    public int fats;
+    public boolean highProtein;//True women, False men
 
     public User(String UUID, String userName) {
         this.UUID = UUID;
         this.userName = userName;
+        this.highProtein=true;
+    }
+
+    public User() {
     }
 
     protected User(Parcel in) {
@@ -31,6 +38,10 @@ public class User implements Parcelable {
         tmb = in.readInt();
         activity = in.readDouble();
         dailyCals = in.readInt();
+        prot = in.readInt();
+        carbs = in.readInt();
+        fats = in.readInt();
+        highProtein = in.readByte() != 0;
     }
 
     public static final Creator<User> CREATOR = new Creator<User>() {
@@ -77,6 +88,10 @@ public class User implements Parcelable {
         this.dailyCals = dailyCals;
     }
 
+    public void setHighProtein(boolean highProtein) {
+        this.highProtein = highProtein;
+    }
+
     @Override
     public String toString() {
         return "User{" +
@@ -89,6 +104,10 @@ public class User implements Parcelable {
                 ", TMB=" + tmb +
                 ", activity=" + activity +
                 ", dailyCals=" + dailyCals +
+                ", prot=" + prot +
+                ", carbs=" + carbs +
+                ", fats=" + fats +
+                ", highProtein=" + highProtein +
                 '}';
     }
 
@@ -108,5 +127,9 @@ public class User implements Parcelable {
         parcel.writeInt(tmb);
         parcel.writeDouble(activity);
         parcel.writeInt(dailyCals);
+        parcel.writeInt(prot);
+        parcel.writeInt(carbs);
+        parcel.writeInt(fats);
+        parcel.writeByte((byte) (highProtein ? 1 : 0));
     }
 }

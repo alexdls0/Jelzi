@@ -36,10 +36,10 @@
     <string name="emailsent">Se le ha enviado un correo para cambiar su contraseña</string>
     <string name="emailsenterror">Se ha producido un error al enviar el correo. Asegúrate de que los datos sean correctos</string>
     <string name="searchFood">Buscar comida</string>
-    <string name="prot">Prot</string>
-    <string name="carbh">Carbh</string>
-    <string name="cals">Cals</string>
-    <string name="grasa">Grasa</string>
+    <string name="prot">Proteinas</string>
+    <string name="carbh">Carbohidratos</string>
+    <string name="cals">Calorias</string>
+    <string name="grasa">Grasas</string>
     <string name="next">Siguiente</string>
     <string name="welcome">Bienvenido,</string>
     <string name="welcomeExplanation">¡No tienes el registro corporal!\n\n Pulsa en siguiente para configurar tus valores corporales y objetivos</string>
@@ -60,4 +60,8 @@
     <string name="maintenanceWeight">Mantener peso</string>
     <string name="gainWeight">Ganar peso</string>
     <string name="noneActivity">Poco o ningún ejercicio</string>
+    <string name="objective">Objetivo</string>
+    <string name="separator">/</string>
+    <string name="morning">Mañana</string>
+    <string name="searchHint">Buscar alimento</string>
 </resources>

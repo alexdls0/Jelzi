@@ -25,6 +25,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.HashMap;
+
 public class MainActivity extends AppCompatActivity implements FirstCalcInterface {
     public ActivityMainBinding binding;
 
@@ -234,10 +236,11 @@ public class MainActivity extends AppCompatActivity implements FirstCalcInterfac
         //Calc Tmb and daily cals and macros
         CaloryIntakeController caloryIntakeController= new CaloryIntakeController();
         user.tmb =caloryIntakeController.calcTMB(user.height,user.weight,user.age,user.gender);
-        System.out.println("tmb: "+user.tmb);
         user.dailyCals=caloryIntakeController.calcDailyCalsIntake(user.tmb,user.activity,user.objective);
-        System.out.println("dailyCals: "+user.dailyCals);
-        System.out.println("macros: "+caloryIntakeController.calcMacros(user.dailyCals,user.weight,true));
+        HashMap<String,Integer> macros = caloryIntakeController.calcMacros(user.dailyCals,user.weight,user.highProtein);
+        user.fats=macros.get("fats");
+        user.carbs=macros.get("carbs");
+        user.prot=macros.get("prot");
         System.out.println(user);
         binding.btnNext.setVisibility(View.VISIBLE);
         saveTracingFirebase();
@@ -246,6 +249,5 @@ public class MainActivity extends AppCompatActivity implements FirstCalcInterfac
     private void saveTracingFirebase() {
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("users").child(mAuth.getCurrentUser().getUid()).child("tracing");
         databaseReference.setValue(user);
-
     }
 }
