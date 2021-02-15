@@ -16,13 +16,28 @@
             android:layout_height="match_parent"
             android:paddingBottom="@dimen/smallMargin">
 
-            <androidx.cardview.widget.CardView
-                app:cardCornerRadius="0dp"
-                android:id="@+id/cvUsername"
-                android:layout_width="match_parent"
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline2"
+                app:layout_constraintGuide_percent="0.05"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
+                android:orientation="vertical" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline"
+                app:layout_constraintGuide_percent="0.95"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" />
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cvUsername"
+                style="@style/optionsProfile"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="0dp"
+                app:layout_constraintEnd_toStartOf="@+id/guideline"
+                app:layout_constraintStart_toStartOf="@+id/guideline2"
                 app:layout_constraintTop_toTopOf="parent">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
@@ -56,18 +71,19 @@
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
-                app:cardCornerRadius="0dp"
                 android:id="@+id/cvAge"
-                android:layout_width="match_parent"
+                style="@style/optionsProfile"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
+                app:cardCornerRadius="0dp"
+                app:layout_constraintEnd_toStartOf="@+id/guideline"
+                app:layout_constraintStart_toStartOf="@+id/guideline2"
                 app:layout_constraintTop_toBottomOf="@+id/cvUsername">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
-                    android:background="@drawable/rect_shape"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    android:layout_height="match_parent"
+                    android:background="@drawable/rect_shape">
 
                     <TextView
                         android:id="@+id/ctvAge"
@@ -94,12 +110,13 @@
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
-                app:cardCornerRadius="0dp"
                 android:id="@+id/cvActivity"
-                android:layout_width="match_parent"
+                style="@style/optionsProfile"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
+                app:cardCornerRadius="0dp"
+                app:layout_constraintEnd_toStartOf="@+id/guideline"
+                app:layout_constraintStart_toStartOf="@+id/guideline2"
                 app:layout_constraintTop_toBottomOf="@+id/cvAge">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
@@ -132,12 +149,13 @@
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
-                app:cardCornerRadius="0dp"
                 android:id="@+id/cvHeight"
-                android:layout_width="match_parent"
+                style="@style/optionsProfile"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
+                app:cardCornerRadius="0dp"
+                app:layout_constraintEnd_toStartOf="@+id/guideline"
+                app:layout_constraintStart_toStartOf="@+id/guideline2"
                 app:layout_constraintTop_toBottomOf="@+id/cvActivity">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
@@ -170,12 +188,13 @@
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
-                app:cardCornerRadius="0dp"
                 android:id="@+id/cvWeight"
-                android:layout_width="match_parent"
+                style="@style/optionsProfile"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
+                app:cardCornerRadius="0dp"
+                app:layout_constraintEnd_toStartOf="@+id/guideline"
+                app:layout_constraintStart_toStartOf="@+id/guideline2"
                 app:layout_constraintTop_toBottomOf="@+id/cvHeight">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
@@ -208,12 +227,13 @@
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
-                app:cardCornerRadius="0dp"
                 android:id="@+id/cvGender"
-                android:layout_width="match_parent"
+                style="@style/optionsProfile"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
+                app:cardCornerRadius="0dp"
+                app:layout_constraintEnd_toStartOf="@+id/guideline"
+                app:layout_constraintStart_toStartOf="@+id/guideline2"
                 app:layout_constraintTop_toBottomOf="@+id/cvWeight">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
@@ -246,12 +266,13 @@
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
-                app:cardCornerRadius="0dp"
                 android:id="@+id/cvObjective"
-                android:layout_width="match_parent"
+                style="@style/optionsProfile"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
+                app:cardCornerRadius="0dp"
+                app:layout_constraintEnd_toStartOf="@+id/guideline"
+                app:layout_constraintStart_toStartOf="@+id/guideline2"
                 app:layout_constraintTop_toBottomOf="@+id/cvGender">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
@@ -284,12 +305,13 @@
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
-                app:cardCornerRadius="0dp"
                 android:id="@+id/cvDiet"
-                android:layout_width="match_parent"
+                style="@style/optionsProfile"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
+                app:cardCornerRadius="0dp"
+                app:layout_constraintEnd_toStartOf="@+id/guideline"
+                app:layout_constraintStart_toStartOf="@+id/guideline2"
                 app:layout_constraintTop_toBottomOf="@+id/cvObjective">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
@@ -327,8 +349,8 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text="@string/logout"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/guideline"
+                app:layout_constraintStart_toStartOf="@+id/guideline2"
                 app:layout_constraintTop_toBottomOf="@+id/btRemoveTracing" />
 
             <Button
@@ -337,8 +359,8 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text="@string/removeTracing"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/guideline"
+                app:layout_constraintStart_toStartOf="@+id/guideline2"
                 app:layout_constraintTop_toBottomOf="@+id/cvDiet" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>

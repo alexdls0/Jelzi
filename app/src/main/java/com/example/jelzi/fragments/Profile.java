@@ -2,9 +2,12 @@ package com.example.jelzi.fragments;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
@@ -34,6 +37,8 @@ public class Profile extends Fragment {
     private final Utils utils = new Utils();
     private DatabaseReference databaseReference;
     private User user;
+    private CardView cvUsername, cvAge, cvActivity, cvHeight, cvWeight,
+    cvGender, cvObjective, cvDiet;
 
     public Profile() {
         // Required empty public constructor
@@ -44,7 +49,7 @@ public class Profile extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_profile, container, false);
-
+        view.setBackgroundColor(getResources().getColor(R.color.colorBackground));
         mAuth = FirebaseAuth.getInstance();
         tvUsername = view.findViewById(R.id.tvUsername);
         tvAge = view.findViewById(R.id.tvAge);
@@ -54,6 +59,14 @@ public class Profile extends Fragment {
         tvGender = view.findViewById(R.id.tvGender);
         tvObjective = view.findViewById(R.id.tvObjective);
         tvDiet = view.findViewById(R.id.tvDiet);
+        cvUsername = view.findViewById(R.id.cvUsername);
+        cvAge = view.findViewById(R.id.cvAge);
+        cvActivity = view.findViewById(R.id.cvActivity);
+        cvHeight = view.findViewById(R.id.cvHeight);
+        cvWeight = view.findViewById(R.id.cvWeight);
+        cvGender = view.findViewById(R.id.cvGender);
+        cvObjective = view.findViewById(R.id.cvObjective);
+        cvDiet = view.findViewById(R.id.cvDiet);
         btLogout = view.findViewById(R.id.btLogout);
         btRemoveTracing = view.findViewById(R.id.btRemoveTracing);
 
@@ -63,59 +76,68 @@ public class Profile extends Fragment {
             TastyToast.makeText(getActivity(), getString(R.string.connectionlost), TastyToast.LENGTH_LONG, TastyToast.ERROR);
         }
 
-        tvUsername.setOnClickListener(new View.OnClickListener() {
+        cvUsername.setBackgroundColor(ContextCompat.getColor(getContext(), android.R.color.transparent));
+        cvAge.setBackgroundColor(ContextCompat.getColor(getContext(), android.R.color.transparent));
+        cvActivity.setBackgroundColor(ContextCompat.getColor(getContext(), android.R.color.transparent));
+        cvHeight.setBackgroundColor(ContextCompat.getColor(getContext(), android.R.color.transparent));
+        cvWeight.setBackgroundColor(ContextCompat.getColor(getContext(), android.R.color.transparent));
+        cvGender.setBackgroundColor(ContextCompat.getColor(getContext(), android.R.color.transparent));
+        cvObjective.setBackgroundColor(ContextCompat.getColor(getContext(), android.R.color.transparent));
+        cvDiet.setBackgroundColor(ContextCompat.getColor(getContext(), android.R.color.transparent));
+
+        cvUsername.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                TastyToast.makeText(getActivity(), getString(R.string.connectionlost), TastyToast.LENGTH_LONG, TastyToast.ERROR);
             }
         });
 
-        tvAge.setOnClickListener(new View.OnClickListener() {
+        cvAge.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                TastyToast.makeText(getActivity(), getString(R.string.connectionlost), TastyToast.LENGTH_LONG, TastyToast.ERROR);
             }
         });
 
-        tvActivity.setOnClickListener(new View.OnClickListener() {
+        cvActivity.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                TastyToast.makeText(getActivity(), getString(R.string.connectionlost), TastyToast.LENGTH_LONG, TastyToast.ERROR);
             }
         });
 
-        tvHeight.setOnClickListener(new View.OnClickListener() {
+        cvHeight.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                TastyToast.makeText(getActivity(), getString(R.string.connectionlost), TastyToast.LENGTH_LONG, TastyToast.ERROR);
             }
         });
 
-        tvWeight.setOnClickListener(new View.OnClickListener() {
+        cvWeight.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                TastyToast.makeText(getActivity(), getString(R.string.connectionlost), TastyToast.LENGTH_LONG, TastyToast.ERROR);
             }
         });
 
-        tvGender.setOnClickListener(new View.OnClickListener() {
+        cvGender.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                TastyToast.makeText(getActivity(), getString(R.string.connectionlost), TastyToast.LENGTH_LONG, TastyToast.ERROR);
             }
         });
 
-        tvObjective.setOnClickListener(new View.OnClickListener() {
+        cvObjective.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                TastyToast.makeText(getActivity(), getString(R.string.connectionlost), TastyToast.LENGTH_LONG, TastyToast.ERROR);
             }
         });
 
-        tvDiet.setOnClickListener(new View.OnClickListener() {
+        cvDiet.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                TastyToast.makeText(getActivity(), getString(R.string.connectionlost), TastyToast.LENGTH_LONG, TastyToast.ERROR);
             }
         });
 

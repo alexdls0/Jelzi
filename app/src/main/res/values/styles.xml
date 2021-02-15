@@ -138,7 +138,7 @@
     </style>
 
     <style name="profileOptions">
-        <item name="android:textColor">@color/colorLightGrey</item>
+        <item name="android:textColor">@color/colorWhite</item>
         <item name="android:textSize">@dimen/halfMediumSize</item>
         <item name="android:layout_marginStart">@dimen/smallMargin</item>
         <item name="android:layout_marginTop">@dimen/smallMargin</item>
@@ -146,6 +146,7 @@
     </style>
 
     <style name="profileData">
+        <item name="android:textColor">@color/colorWhite</item>
         <item name="android:textStyle">bold</item>
         <item name="android:textSize">@dimen/halfMediumSize</item>
         <item name="android:layout_marginStart">@dimen/smallMargin</item>
@@ -166,8 +167,14 @@
         <item name="android:background">@drawable/btn_bg_red</item>
         <item name="android:layout_marginStart">@dimen/smallMargin</item>
         <item name="android:layout_marginEnd">@dimen/smallMargin</item>
-        <item name="android:textColor">@color/colorWhite</item>
+        <item name="android:textColor">@color/colorRed</item>
         <item name="android:layout_marginTop">@dimen/mediumMargin</item>
         <item name="android:textAllCaps">false</item>
+    </style>
+
+    <style name="optionsProfile">
+        <item name="android:background">@drawable/btn_bg_background_color</item>
+        <item name="android:layout_marginTop">@dimen/smallSize</item>
+        <item name="android:layout_marginBottom">@dimen/smallSize</item>
     </style>
 </resources>
