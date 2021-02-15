@@ -95,20 +95,27 @@ public class Profile extends Fragment {
         cvUsername.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                /*final EditText username = new EditText(getActivity());
-                username.setTextColor(getResources().getColor(R.color.colorWhite));
+                AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                View dialogView = getLayoutInflater().inflate(R.layout.dialog_profile_username, null);
+                final EditText username = dialogView.findViewById(R.id.etProfileDialogUsername);
                 username.setText(user.getUserName());
-                AlertDialog.Builder builder = new AlertDialog.Builder(getActivity(), R.style.AlertDialogCustom);
+                Button btChange = dialogView.findViewById(R.id.btChange);
+                Button btBack = dialogView.findViewById(R.id.btBack);
 
-                builder.setView(username);
-                builder.setPositiveButton(getString(R.string.change), new DialogInterface.OnClickListener() {
+                builder.setView(dialogView);
+                final AlertDialog dialog = builder.create();
+                dialog.show();
+                dialog.setCanceledOnTouchOutside(false);
+
+                btChange.setOnClickListener(new View.OnClickListener() {
                     @Override
-                    public void onClick(DialogInterface dialog, int which) {
+                    public void onClick(View v) {
                         String name = username.getText().toString();
                         if(!name.isEmpty() && utils.checkUsername(name)){
                             if (utils.isConnected(getActivity())){
                                 user.setUserName(name);
                                 saveTracingFirebase();
+                                dialog.dismiss();
                             }else{
                                 TastyToast.makeText(getActivity(), getString(R.string.connectionlost), TastyToast.LENGTH_LONG, TastyToast.ERROR);
                             }
@@ -117,15 +124,13 @@ public class Profile extends Fragment {
                         }
                     }
                 });
-                builder.setNegativeButton(getString(R.string.back), new DialogInterface.OnClickListener() {
+
+                btBack.setOnClickListener(new View.OnClickListener() {
                     @Override
-                    public void onClick(DialogInterface dialog, int which) {
+                    public void onClick(View v) {
+                        dialog.dismiss();
                     }
                 });
-
-                AlertDialog dialog = builder.create();
-                dialog.show();
-                dialog.setCanceledOnTouchOutside(false);*/
             }
         });
 
@@ -191,27 +196,47 @@ public class Profile extends Fragment {
         btRemoveTracing.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (utils.isConnected(getActivity())){
-                    databaseReference = FirebaseDatabase.getInstance().getReference().child("users").child(mAuth.getCurrentUser().getUid());
-                    databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
-                        @Override
-                        public void onDataChange(DataSnapshot dataSnapshot) {
-                            if(dataSnapshot.hasChild("foods")){
-                                databaseReference.child("/foods").removeValue();
-                            }
-                        }
+                AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                View dialogView = getLayoutInflater().inflate(R.layout.dialog_profile_remove_tracing, null);
+                Button btRemove = dialogView.findViewById(R.id.btRemove);
+                Button btBack = dialogView.findViewById(R.id.btBack);
 
-                        @Override
-                        public void onCancelled(@NonNull DatabaseError error) {
+                builder.setView(dialogView);
+                final AlertDialog dialog = builder.create();
+                dialog.show();
+                dialog.setCanceledOnTouchOutside(false);
+                btRemove.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        if (utils.isConnected(getActivity())){
+                            databaseReference = FirebaseDatabase.getInstance().getReference().child("users").child(mAuth.getCurrentUser().getUid());
+                            databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+                                @Override
+                                public void onDataChange(DataSnapshot dataSnapshot) {
+                                    if(dataSnapshot.hasChild("foods")){
+                                        databaseReference.child("/foods").removeValue();
+                                    }
+                                }
+                                @Override
+                                public void onCancelled(@NonNull DatabaseError error) {
+                                }
+                            });
+                            databaseReference.child("/tracing/dailyCals").removeValue();
+                            Intent intent = new Intent(getActivity(), MainActivity.class);
+                            startActivity(intent);
+                            getActivity().finish();
+                        }else{
+                            TastyToast.makeText(getActivity(), getString(R.string.connectionlost), TastyToast.LENGTH_LONG, TastyToast.ERROR);
                         }
-                    });
-                    databaseReference.child("/tracing/dailyCals").removeValue();
-                    Intent intent = new Intent(getActivity(), MainActivity.class);
-                    startActivity(intent);
-                    getActivity().finish();
-                }else{
-                    TastyToast.makeText(getActivity(), getString(R.string.connectionlost), TastyToast.LENGTH_LONG, TastyToast.ERROR);
-                }
+                    }
+                });
+
+                btBack.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        dialog.dismiss();
+                    }
+                });
             }
         });
 

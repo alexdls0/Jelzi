@@ -68,17 +68,9 @@ public class Login extends AppCompatActivity {
                         TastyToast.makeText(Login.this, getString(R.string.connectionlost), TastyToast.LENGTH_LONG, TastyToast.ERROR);
                     }
                 }else{
-                    AlertDialog.Builder builder = new AlertDialog.Builder(Login.this);
-                    builder.setTitle(getString(R.string.nodata));
-                    builder.setMessage(getString(R.string.nodataloginerror));
-                    builder.setPositiveButton(getString(R.string.agree), new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                        }
-                    });
-                    AlertDialog dialog = builder.create();
-                    dialog.show();
-                    dialog.setCanceledOnTouchOutside(false);
+                    utils.launchDialogError(Login.this, Login.this,
+                            getResources().getString(R.string.nodata),
+                            getResources().getString(R.string.nodataloginerror));
                 }
             }
         });
@@ -117,19 +109,9 @@ public class Login extends AppCompatActivity {
                         } else {
                             Log.w(TAG, "userLogin:failure", task.getException());
                             loadingDialog.endLoadingDialog();
-                            AlertDialog.Builder builder = new AlertDialog.Builder(Login.this);
-                            builder.setTitle(getString(R.string.errorlogin));
-                            builder.setMessage(getString(R.string.loginerror));
-                            builder.setPositiveButton(getString(R.string.agree), new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialog, int which) {
-                                    etEmail.setText("");
-                                    etPassword.setText("");
-                                }
-                            });
-                            AlertDialog dialog = builder.create();
-                            dialog.show();
-                            dialog.setCanceledOnTouchOutside(false);
+                            utils.launchDialogError(Login.this, Login.this,
+                                    getResources().getString(R.string.errorlogin),
+                                    getResources().getString(R.string.loginerror));
                         }
                     }
                 });
@@ -176,14 +158,19 @@ public class Login extends AppCompatActivity {
     }
 
     public void doForgotPass(){
-        final EditText forgotpassemail = new EditText(Login.this);
         AlertDialog.Builder builder = new AlertDialog.Builder(Login.this);
-        builder.setTitle(getString(R.string.resetpass));
-        builder.setMessage(getString(R.string.resetpassdesc));
-        builder.setView(forgotpassemail);
-        builder.setPositiveButton(getString(R.string.change), new DialogInterface.OnClickListener() {
+        View dialogView = getLayoutInflater().inflate(R.layout.dialog_forgot_pass, null);
+        Button btRemove = dialogView.findViewById(R.id.btChange);
+        Button btBack = dialogView.findViewById(R.id.btBack);
+        final EditText forgotpassemail = dialogView.findViewById(R.id.etForgotPass);
+
+        builder.setView(dialogView);
+        final AlertDialog dialog = builder.create();
+        dialog.show();
+        dialog.setCanceledOnTouchOutside(false);
+        btRemove.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(DialogInterface dialog, int which) {
+            public void onClick(View v) {
                 String email = forgotpassemail.getText().toString();
                 if(!email.isEmpty()){
                     if (utils.isConnected(Login.this)){
@@ -191,27 +178,29 @@ public class Login extends AppCompatActivity {
                             @Override
                             public void onSuccess(Void aVoid) {
                                 TastyToast.makeText(Login.this, getString(R.string.emailsent), TastyToast.LENGTH_LONG, TastyToast.SUCCESS);
+                                dialog.dismiss();
                             }
                         }).addOnFailureListener(new OnFailureListener() {
                             @Override
                             public void onFailure(@NonNull Exception e) {
                                 TastyToast.makeText(Login.this, getString(R.string.emailsenterror), TastyToast.LENGTH_LONG, TastyToast.ERROR);
+                                dialog.dismiss();
                             }
                         });
                     }else{
                         TastyToast.makeText(Login.this, getString(R.string.connectionlost), TastyToast.LENGTH_LONG, TastyToast.ERROR);
                     }
+                }else{
+                    TastyToast.makeText(Login.this, getString(R.string.connectionlost), TastyToast.LENGTH_LONG, TastyToast.ERROR);
                 }
             }
         });
-        builder.setNegativeButton(getString(R.string.back), new DialogInterface.OnClickListener() {
+
+        btBack.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(DialogInterface dialog, int which) {
+            public void onClick(View v) {
+                dialog.dismiss();
             }
         });
-
-        AlertDialog dialog = builder.create();
-        dialog.show();
-        dialog.setCanceledOnTouchOutside(false);
     }
 }
