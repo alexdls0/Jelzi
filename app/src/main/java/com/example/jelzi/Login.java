@@ -191,7 +191,7 @@ public class Login extends AppCompatActivity {
                         TastyToast.makeText(Login.this, getString(R.string.connectionlost), TastyToast.LENGTH_LONG, TastyToast.ERROR);
                     }
                 }else{
-                    TastyToast.makeText(Login.this, getString(R.string.connectionlost), TastyToast.LENGTH_LONG, TastyToast.ERROR);
+                    TastyToast.makeText(Login.this, getString(R.string.nodataForgotPass), TastyToast.LENGTH_LONG, TastyToast.ERROR);
                 }
             }
         });

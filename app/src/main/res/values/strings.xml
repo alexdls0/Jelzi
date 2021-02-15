@@ -21,6 +21,7 @@
     <string name="usernameerror">No puede contener espacios y debe tener de 3 a 10
         caracteres y letras entre la A y la Z o números</string>
     <string name="nodata">Campos vacíos</string>
+    <string name="nodataForgotPass">Introduce tu email para poder cambiar la contraseña</string>
     <string name="nodataerror">Para registrarte debes rellenar los campos</string>
     <string name="errorregistration">Error al registrar</string>
     <string name="registrationerror">Es posible que exista un usuario con eso correo</string>
