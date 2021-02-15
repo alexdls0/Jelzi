@@ -1,6 +1,8 @@
 package com.example.jelzi.fragments;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -14,13 +16,17 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import com.example.jelzi.Login;
 import com.example.jelzi.MainActivity;
 import com.example.jelzi.R;
+import com.example.jelzi.controllers.CaloryIntakeController;
 import com.example.jelzi.model.User;
 import com.example.jelzi.model.Utils;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -39,6 +45,7 @@ public class Profile extends Fragment {
     private User user;
     private CardView cvUsername, cvAge, cvActivity, cvHeight, cvWeight,
     cvGender, cvObjective, cvDiet;
+    private CaloryIntakeController caloryIntakeController= new CaloryIntakeController();
 
     public Profile() {
         // Required empty public constructor
@@ -46,7 +53,7 @@ public class Profile extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+                             final Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_profile, container, false);
         view.setBackgroundColor(getResources().getColor(R.color.colorBackground));
@@ -88,7 +95,37 @@ public class Profile extends Fragment {
         cvUsername.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                TastyToast.makeText(getActivity(), getString(R.string.connectionlost), TastyToast.LENGTH_LONG, TastyToast.ERROR);
+                /*final EditText username = new EditText(getActivity());
+                username.setTextColor(getResources().getColor(R.color.colorWhite));
+                username.setText(user.getUserName());
+                AlertDialog.Builder builder = new AlertDialog.Builder(getActivity(), R.style.AlertDialogCustom);
+
+                builder.setView(username);
+                builder.setPositiveButton(getString(R.string.change), new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        String name = username.getText().toString();
+                        if(!name.isEmpty() && utils.checkUsername(name)){
+                            if (utils.isConnected(getActivity())){
+                                user.setUserName(name);
+                                saveTracingFirebase();
+                            }else{
+                                TastyToast.makeText(getActivity(), getString(R.string.connectionlost), TastyToast.LENGTH_LONG, TastyToast.ERROR);
+                            }
+                        }else{
+                            TastyToast.makeText(getActivity(), getString(R.string.usernameerror), TastyToast.LENGTH_LONG, TastyToast.ERROR);
+                        }
+                    }
+                });
+                builder.setNegativeButton(getString(R.string.back), new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                    }
+                });
+
+                AlertDialog dialog = builder.create();
+                dialog.show();
+                dialog.setCanceledOnTouchOutside(false);*/
             }
         });
 
@@ -255,5 +292,20 @@ public class Profile extends Fragment {
                 break;
             }
         }
+    }
+
+    public void updateUser() {
+        user.tmb =caloryIntakeController.calcTMB(user.height,user.weight,user.age,user.gender);
+        System.out.println("tmb: "+user.tmb);
+        user.dailyCals=caloryIntakeController.calcDailyCalsIntake(user.tmb,user.activity,user.objective);;
+        System.out.println("dailyCals: "+user.dailyCals);
+        System.out.println("macros: "+caloryIntakeController.calcMacros(user.dailyCals,user.weight,user.isHighProtein()));
+        System.out.println(user);
+        saveTracingFirebase();
+    }
+
+    private void saveTracingFirebase() {
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("users").child(mAuth.getCurrentUser().getUid()).child("tracing");
+        databaseReference.setValue(user);
     }
 }

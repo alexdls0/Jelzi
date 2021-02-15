@@ -61,7 +61,6 @@ public class MainActivity extends AppCompatActivity implements FirstCalcInterfac
 
             }
         });
-
     }
 
     @RequiresApi(api = Build.VERSION_CODES.M)
@@ -247,6 +246,5 @@ public class MainActivity extends AppCompatActivity implements FirstCalcInterfac
     private void saveTracingFirebase() {
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("users").child(mAuth.getCurrentUser().getUid()).child("tracing");
         databaseReference.setValue(user);
-
     }
 }
