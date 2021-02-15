@@ -4,7 +4,7 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 public class User implements Parcelable {
-    public String UUID;
+    public String id;
     public String userName;
     public int height;//In cm
     public int age;
@@ -19,8 +19,8 @@ public class User implements Parcelable {
     public int fats;
     public boolean highProtein;//True women, False men
 
-    public User(String UUID, String userName) {
-        this.UUID = UUID;
+    public User(String id, String userName) {
+        this.id = id;
         this.userName = userName;
         this.highProtein=true;
     }
@@ -29,7 +29,7 @@ public class User implements Parcelable {
     }
 
     protected User(Parcel in) {
-        UUID = in.readString();
+        id = in.readString();
         userName = in.readString();
         height = in.readInt();
         age = in.readInt();
@@ -56,36 +56,112 @@ public class User implements Parcelable {
         }
     };
 
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
     public void setUserName(String userName) {
         this.userName = userName;
+    }
+
+    public int getHeight() {
+        return height;
     }
 
     public void setHeight(int height) {
         this.height = height;
     }
 
+    public int getAge() {
+        return age;
+    }
+
     public void setAge(int age) {
         this.age = age;
+    }
+
+    public boolean isGender() {
+        return gender;
     }
 
     public void setGender(boolean gender) {
         this.gender = gender;
     }
 
+    public int getWeight() {
+        return weight;
+    }
+
     public void setWeight(int weight) {
         this.weight = weight;
+    }
+
+    public int getTmb() {
+        return tmb;
     }
 
     public void setTmb(int tmb) {
         this.tmb = tmb;
     }
 
+    public double getActivity() {
+        return activity;
+    }
+
     public void setActivity(double activity) {
         this.activity = activity;
     }
 
+    public int getDailyCals() {
+        return dailyCals;
+    }
+
     public void setDailyCals(int dailyCals) {
         this.dailyCals = dailyCals;
+    }
+
+    public int getObjective() {
+        return objective;
+    }
+
+    public void setObjective(int objective) {
+        this.objective = objective;
+    }
+
+    public int getProt() {
+        return prot;
+    }
+
+    public void setProt(int prot) {
+        this.prot = prot;
+    }
+
+    public int getCarbs() {
+        return carbs;
+    }
+
+    public void setCarbs(int carbs) {
+        this.carbs = carbs;
+    }
+
+    public int getFats() {
+        return fats;
+    }
+
+    public void setFats(int fats) {
+        this.fats = fats;
+    }
+
+    public boolean isHighProtein() {
+        return highProtein;
     }
 
     public void setHighProtein(boolean highProtein) {
@@ -95,7 +171,7 @@ public class User implements Parcelable {
     @Override
     public String toString() {
         return "User{" +
-                "UUID='" + UUID + '\'' +
+                "UUID='" + id + '\'' +
                 ", userName='" + userName + '\'' +
                 ", height=" + height +
                 ", age=" + age +
@@ -118,7 +194,7 @@ public class User implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel parcel, int i) {
-        parcel.writeString(UUID);
+        parcel.writeString(id);
         parcel.writeString(userName);
         parcel.writeInt(height);
         parcel.writeInt(age);
