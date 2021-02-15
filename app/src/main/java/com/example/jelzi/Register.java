@@ -179,8 +179,8 @@ public class Register extends AppCompatActivity {
     public void goLogin(){
         Intent intent = new Intent(Register.this, Login.class);
         startActivity(intent);
-        overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
         finish();
+        overridePendingTransition(R.anim.slide_out_left,R.anim.slide_in_left);
     }
 
     public void goMain(){

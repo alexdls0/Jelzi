@@ -7,4 +7,5 @@
     <color name="colorGreen">#6cdd64</color>
     <color name="colorRed">#E35E69</color>
     <color name="white">#FFFFFF</color>
+    <color name="colorBackgroundCards">#2F3F53</color>
 </resources>

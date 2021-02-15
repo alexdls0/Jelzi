@@ -25,6 +25,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.HashMap;
+
 public class MainActivity extends AppCompatActivity implements FirstCalcInterface {
     public ActivityMainBinding binding;
 
@@ -52,7 +54,7 @@ public class MainActivity extends AppCompatActivity implements FirstCalcInterfac
             @RequiresApi(api = Build.VERSION_CODES.M)
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                user= new User(snapshot.getValue(String.class));
+                user= new User(mAuth.getCurrentUser().getUid(),snapshot.getValue(String.class));
                 init();
             }
 
@@ -233,11 +235,11 @@ public class MainActivity extends AppCompatActivity implements FirstCalcInterfac
         //Calc Tmb and daily cals and macros
         CaloryIntakeController caloryIntakeController= new CaloryIntakeController();
         user.tmb =caloryIntakeController.calcTMB(user.height,user.weight,user.age,user.gender);
-        System.out.println("tmb: "+user.tmb);
         user.dailyCals=caloryIntakeController.calcDailyCalsIntake(user.tmb,user.activity,user.objective);
-        user.setHighProtein(false);
-        System.out.println("dailyCals: "+user.dailyCals);
-        System.out.println("macros: "+caloryIntakeController.calcMacros(user.dailyCals,user.weight,user.isHighProtein()));
+        HashMap<String,Integer> macros = caloryIntakeController.calcMacros(user.dailyCals,user.weight,user.highProtein);
+        user.fats=macros.get("fats");
+        user.carbs=macros.get("carbs");
+        user.prot=macros.get("prot");
         System.out.println(user);
         binding.btnNext.setVisibility(View.VISIBLE);
         saveTracingFirebase();

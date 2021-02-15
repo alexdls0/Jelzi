@@ -46,19 +46,14 @@ public class Login extends AppCompatActivity {
     }
 
     private void init() {
-        loadingDialog = new LoadingDialog(Login.this);
-        mAuth = FirebaseAuth.getInstance();
+        loadingDialog=new LoadingDialog(this);
+        mAuth=FirebaseAuth.getInstance();
         etEmail = findViewById(R.id.etEmail);
         etPassword = findViewById(R.id.etPassword);
         btLogin = findViewById(R.id.btLogin);
         notMember = findViewById(R.id.tvNotMember);
         forgotPass = findViewById(R.id.tvForgotPass);
         signUp = findViewById(R.id.tvSignUp);
-
-        if(mAuth.getCurrentUser() != null){
-            loadingDialog.startLoadingDialog();
-            hasTracing();
-        }
 
         btLogin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -176,8 +171,8 @@ public class Login extends AppCompatActivity {
     public void goRegister(){
         Intent intent = new Intent(Login.this, Register.class);
         startActivity(intent);
-        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
         finish();
+        overridePendingTransition(R.anim.slide_out_right,R.anim.slide_in_right);
     }
 
     public void doForgotPass(){
