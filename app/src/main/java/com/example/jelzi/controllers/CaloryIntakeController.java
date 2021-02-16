@@ -6,11 +6,11 @@ public class CaloryIntakeController {
 
     public int calcTMB(int height, int weight, int age, boolean gender){
         int TMB=0;
-        //Is a women
-        if(gender){
+        //Is a men
+        if(!gender){
             TMB= (int) ((10*weight)+(6.25*height)-(5*age)+5);
         }else {
-            // Is a men
+            // Is a women
             TMB= (int) ((10*weight)+(6.25*height)-(5*age)-161);
         }
         return TMB;

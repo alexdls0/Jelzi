@@ -55,7 +55,7 @@
     <string name="lowActivity">Ejercicio ligero\n (1-3 días por semana)</string>
     <string name="midActivity">Ejercicio Moderado\n (3-5 días por semana)</string>
     <string name="strongActivity">Ejercicio Fuerte\n (6 días por semana)</string>
-    <string name="profActivity">Ejercicio profesional o extremo</string>
+    <string name="profActivity">Ejercicio profesional\n o extremo</string>
     <string name="objectiveTextt">Selecciona tu objetivo</string>
     <string name="lossWeight">Perder peso</string>
     <string name="maintenanceWeight">Mantener peso</string>

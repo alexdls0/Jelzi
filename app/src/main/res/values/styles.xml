@@ -272,4 +272,20 @@
         <item name="android:paddingBottom">@dimen/smallMargin</item>
         <item name="android:paddingStart">@dimen/smallMargin</item>
     </style>
+
+    <style name="dialogGenderMarginTop">
+        <item name="android:layout_marginTop">@dimen/smallMargin</item>
+    </style>
+
+    <style name="FirstCalcTextSelects.dialogGenderMarginTop">
+        <item name="android:layout_marginTop">@dimen/smallMargin</item>
+    </style>
+
+    <style name="FirstCalcTextSelects.dialogGenderMarginBottom">
+        <item name="android:layout_marginBottom">@dimen/smallMargin</item>
+    </style>
+
+    <style name="FirstCalcTextSelects.dialogObjectivePaddingBottom">
+        <item name="android:paddingBottom">@dimen/smallMargin</item>
+    </style>
 </resources>
