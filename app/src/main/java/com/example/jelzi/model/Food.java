@@ -1,14 +1,22 @@
 package com.example.jelzi.model;
 
+import java.math.BigDecimal;
+
 public class Food {
 
     private String foodName, foodKey;
-    private double fat, prot, carbh, cals;
-
+    private double fat, prot, carbh;
+    private BigDecimal cals;
     public Food(){
+        this.foodName = "";
+        this.foodKey = "";
+        this.fat = 0;
+        this.prot = 0;
+        this.carbh = 0;
+        this.cals = BigDecimal.valueOf(0);
     }
 
-    public Food(String foodName, String foodKey, double fat, double prot, double carbh, double cals) {
+    public Food(String foodName, String foodKey, double fat, double prot, double carbh, BigDecimal cals) {
         this.foodName = foodName;
         this.foodKey = foodKey;
         this.fat = fat;
@@ -57,11 +65,11 @@ public class Food {
         this.carbh = carbh;
     }
 
-    public double getCals() {
+    public BigDecimal getCals() {
         return cals;
     }
 
-    public void setCals(double cals) {
+    public void setCals(BigDecimal cals) {
         this.cals = cals;
     }
 }

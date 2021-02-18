@@ -52,6 +52,7 @@ public class Foods extends Fragment {
     private DatabaseReference databaseReference;
     private FragmentFoodsBinding binding;
     private User user;
+
     public Foods() {
         // Required empty public constructor
     }

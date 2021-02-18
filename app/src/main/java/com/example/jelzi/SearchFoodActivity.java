@@ -1,27 +1,26 @@
 package com.example.jelzi;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SearchView;
+import androidx.recyclerview.widget.LinearLayoutManager;
 
-import android.content.Intent;
-import android.net.sip.SipAudioCall;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.SearchView;
 
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
+import com.example.jelzi.adapter.FoodSearchAdapter;
 import com.example.jelzi.databinding.ActivitySearchFoodBinding;
 import com.fatsecret.platform.model.CompactFood;
-import com.fatsecret.platform.model.CompactRecipe;
 import com.fatsecret.platform.model.Food;
-import com.fatsecret.platform.model.Serving;
 import com.fatsecret.platform.services.FatsecretService;
-import com.fatsecret.platform.model.Recipe;
+
 import com.fatsecret.platform.services.Response;
 import com.fatsecret.platform.services.android.Request;
 import com.fatsecret.platform.services.android.ResponseListener;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class SearchFoodActivity extends AppCompatActivity {
@@ -32,6 +31,8 @@ public class SearchFoodActivity extends AppCompatActivity {
     private Request req;
     private FatsecretService fatsecretService;
     private RequestQueue requestQueue;
+    public HashMap<Long,com.example.jelzi.model.Food> foodList;
+    public  FoodSearchAdapter foodAdapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,16 +50,21 @@ public class SearchFoodActivity extends AppCompatActivity {
         });
         binding.searchInput.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
-            public boolean onQueryTextSubmit(String s) {
+            public boolean onQueryTextSubmit(String query) {
                 return false;
             }
 
             @Override
-            public boolean onQueryTextChange(String s) {
-                searchFood(binding.searchInput.getQuery().toString());
+            public boolean onQueryTextChange(String newText) {
+                if(binding.searchInput.getQuery().length()>0)
+                    searchFood(binding.searchInput.getQuery().toString());
                 return false;
             }
         });
+        binding.rvFoodSearch.setLayoutManager(new LinearLayoutManager(this));
+        foodList= new HashMap<>();
+        foodAdapter= new FoodSearchAdapter(foodList);
+        binding.rvFoodSearch.setAdapter(foodAdapter);
     }
 
     private void searchFood(String query) {
@@ -68,7 +74,7 @@ public class SearchFoodActivity extends AppCompatActivity {
         req = new Request(key, secret, listener);
         fatsecretService= new FatsecretService(key,secret);
         //This response contains the list of food items at zeroth page for your query
-        //req.getFoods(requestQueue, query,0);
+        req.getFoods(requestQueue, query,0);
 
         //This response contains the list of food items at page number 3 for your query
         //If total results are less, then this response will have empty list of the food items
@@ -86,27 +92,24 @@ public class SearchFoodActivity extends AppCompatActivity {
     class Listener implements ResponseListener {
         @Override
         public void onFoodListRespone(Response<CompactFood> response) {
-            System.out.println("TOTAL FOOD ITEMS: " + response.getTotalResults());
-
             List<CompactFood> foods = response.getResults();
             //This list contains summary information about the food items
-            System.out.println("=========FOODS============");
+            foodList.clear();
             for (CompactFood food: foods) {
-
+                long id= food.getId();
+                com.example.jelzi.model.Food food1=new com.example.jelzi.model.Food();
+                food1.setFoodName(food.getName());
+                foodList.put(id,food1);
+                req.getFood(requestQueue,id);
             }
         }
 
         @Override
         public void onFoodResponse(Food food) {
-            System.out.println("FOOD NAME: " + food.getName());
-            ArrayList<Serving> servings= (ArrayList<Serving>) food.getServings();
-
-                System.out.println("desc: "+servings.get(4).getServingDescription()
-                        +" calories: "+servings.get(4).getCalories()
-                        +" protein: "+servings.get(4).getProtein()
-                        +" carbs: "+servings.get(4).getCarbohydrate()
-                        +" fats: "+servings.get(4).getFat());
-
+            System.out.println("FOOD NAME: " +  foodList.get(food.getId()));
+            if( foodList.get(food.getId())!=null)
+                foodList.get(food.getId()).setCals(food.getServings().get(0).getCalories());
+            foodAdapter.notifyDataSetChanged();
         }
 
     }

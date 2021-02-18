@@ -84,12 +84,9 @@
     </style>
 
     <style name="SearchViewStyle" parent="Widget.AppCompat.SearchView">
-        <item name="searchIcon">@drawable/ic_search</item>
-        <item name="searchHintIcon">@null</item>
-        <item name="queryHint">@string/searchFood</item>
-        <item name="background">@color/colorWhite</item>
-        <item name="android:background">@color/colorWhite</item>
-        <item name="android:layout_marginTop">@dimen/smallMargin</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:editTextColor">@color/white</item>
+        <item name="android:textColorHint">@color/colorGrey</item>
     </style>
 
     <style name="textUser">
@@ -178,5 +175,9 @@
         <item name="android:background">@drawable/btn_bg_background_color</item>
         <item name="android:layout_marginTop">@dimen/smallSize</item>
         <item name="android:layout_marginBottom">@dimen/smallSize</item>
+    </style>
+    <style name="searchView">
+        <item name="android:textColor">@color/colorWhite</item>
+        <item name="android:textColorHint">@color/colorWhite</item>
     </style>
 </resources>
