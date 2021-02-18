@@ -4,10 +4,12 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -44,7 +46,7 @@ public class Register extends AppCompatActivity {
     private void init() {
         loadingDialog = new LoadingDialog(Register.this);
         mAuth = FirebaseAuth.getInstance();
-        etUsername = findViewById(R.id.etUsername);
+        etUsername = findViewById(R.id.etProfileDialogUsername);
         etEmail = findViewById(R.id.etEmail);
         etPassword = findViewById(R.id.etPassword);
         btRegister = findViewById(R.id.btRegister);
@@ -72,61 +74,25 @@ public class Register extends AppCompatActivity {
                                     TastyToast.makeText(Register.this, getString(R.string.connectionlost), TastyToast.LENGTH_LONG, TastyToast.ERROR);
                                 }
                             }else{
-                                AlertDialog.Builder builder = new AlertDialog.Builder(Register.this);
-                                builder.setTitle(getString(R.string.invalidemail));
-                                builder.setMessage(getString(R.string.emailerror));
-                                builder.setPositiveButton(getString(R.string.agree), new DialogInterface.OnClickListener() {
-                                    @Override
-                                    public void onClick(DialogInterface dialog, int which) {
-                                        etEmail.setText("");
-                                    }
-                                });
-                                AlertDialog dialog = builder.create();
-                                dialog.show();
-                                dialog.setCanceledOnTouchOutside(false);
+                                utils.launchDialogError(Register.this, Register.this,
+                                        getResources().getString(R.string.invalidemail),
+                                        getResources().getString(R.string.emailerror));
                             }
                         }else{
-                            AlertDialog.Builder builder = new AlertDialog.Builder(Register.this);
-                            builder.setTitle(getString(R.string.shortpasserror));
-                            builder.setMessage(getString(R.string.passerror));
-                            builder.setPositiveButton(getString(R.string.agree), new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialog, int which) {
-                                    etPassword.setText("");
-                                }
-                            });
-                            AlertDialog dialog = builder.create();
-                            dialog.show();
-                            dialog.setCanceledOnTouchOutside(false);
+                            utils.launchDialogError(Register.this, Register.this,
+                                    getResources().getString(R.string.shortpasserror),
+                                    getResources().getString(R.string.passerror));
                         }
                     }else{
-                        AlertDialog.Builder builder = new AlertDialog.Builder(Register.this);
-                        builder.setTitle(getString(R.string.invalidusername));
-                        builder.setMessage(getString(R.string.usernameerror));
-                        builder.setPositiveButton(getString(R.string.agree), new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                etUsername.setText("");
-                            }
-                        });
-                        AlertDialog dialog = builder.create();
-                        dialog.show();
-                        dialog.setCanceledOnTouchOutside(false);
+                        utils.launchDialogError(Register.this, Register.this,
+                                getResources().getString(R.string.invalidusername),
+                                getResources().getString(R.string.usernameerror));
                     }
                 }else{
-                    AlertDialog.Builder builder = new AlertDialog.Builder(Register.this);
-                    builder.setTitle(getString(R.string.nodata));
-                    builder.setMessage(getString(R.string.nodataerror));
-                    builder.setPositiveButton(getString(R.string.agree), new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                        }
-                    });
-                    AlertDialog dialog = builder.create();
-                    dialog.show();
-                    dialog.setCanceledOnTouchOutside(false);
+                    utils.launchDialogError(Register.this, Register.this,
+                            getResources().getString(R.string.nodata),
+                            getResources().getString(R.string.nodataerror));
                 }
-
             }
         });
 
@@ -162,7 +128,7 @@ public class Register extends AppCompatActivity {
                     AlertDialog.Builder builder = new AlertDialog.Builder(Register.this);
                     builder.setTitle(getString(R.string.errorregistration));
                     builder.setMessage(getString(R.string.registrationerror));
-                    builder.setPositiveButton(getString(R.string.agree), new DialogInterface.OnClickListener() {
+                    builder.setPositiveButton(getString(R.string.continuar), new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
                             etEmail.setText("");

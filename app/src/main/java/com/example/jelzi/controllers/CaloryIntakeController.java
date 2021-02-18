@@ -6,11 +6,11 @@ public class CaloryIntakeController {
 
     public int calcTMB(int height, int weight, int age, boolean gender){
         int TMB=0;
-        //Is a women
-        if(gender){
+        //Is a men
+        if(!gender){
             TMB= (int) ((10*weight)+(6.25*height)-(5*age)+5);
         }else {
-            // Is a men
+            // Is a women
             TMB= (int) ((10*weight)+(6.25*height)-(5*age)-161);
         }
         return TMB;
@@ -45,6 +45,9 @@ public class CaloryIntakeController {
         }
         remainCals-=((prot*4)+(fats*9));
         carbs=remainCals/4;
+        if(carbs <= 0){
+            carbs = 0;
+        }
 
         HashMap<String,Integer> macros= new HashMap<String, Integer>();
         macros.put("carbs",carbs);

@@ -196,7 +196,7 @@ public class FirstCalcAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
     }
 
     private void putSelectAgeListeners(View currentView) {
-        NumberPicker AgePicker=((NumberPicker) currentView.findViewById(R.id.agePicker));
+        NumberPicker AgePicker=((NumberPicker) currentView.findViewById(R.id.numberPicker));
         AgePicker.setMinValue(16);
         AgePicker.setMaxValue(99);
         AgePicker.setValue(25);

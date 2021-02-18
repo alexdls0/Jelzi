@@ -10,8 +10,11 @@
     <dimen name="topMarginEdittexts">6dp</dimen>
     <dimen name="bottomMarginEdittexts">24dp</dimen>
     <dimen name="smallMargin">12dp</dimen>
+    <dimen name="negativesmallMargin">-12dp</dimen>
     <dimen name="mediumMargin">24dp</dimen>
+    <dimen name="negativemediumMargin">-24dp</dimen>
     <dimen name="bigMargin">36dp</dimen>
+    <dimen name="negativebigMargin">-36dp</dimen>
     <dimen name="jelziimagotipoheight">100dp</dimen>
     <dimen name="jelziimagotipowidth">100dp</dimen>
     <dimen name="none">0dp</dimen>

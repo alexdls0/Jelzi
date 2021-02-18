@@ -1,13 +1,15 @@
 package com.example.jelzi.model;
 
+import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
-import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.util.Log;
-
-import com.example.jelzi.Login;
-import com.example.jelzi.MainActivity;
-
+import android.view.LayoutInflater;
+import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
+import com.example.jelzi.R;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -55,5 +57,28 @@ public class Utils {
             return true;
         else
             return false;
+    }
+
+    public void launchDialogError(Activity activity, Context context, String title, String message){
+        LayoutInflater inflater = LayoutInflater.from(context);
+        AlertDialog.Builder builder = new AlertDialog.Builder(activity);
+        View dialogView = inflater.inflate(R.layout.dialog_error, null);
+        Button btContinue = dialogView.findViewById(R.id.btContinue);
+        TextView tvTitle = dialogView.findViewById(R.id.tvTitle);
+        TextView tvMessage = dialogView.findViewById(R.id.tvMessage);
+        tvTitle.setText(title);
+        tvMessage.setText(message);
+
+        builder.setView(dialogView);
+        final AlertDialog dialog = builder.create();
+        dialog.show();
+        dialog.setCanceledOnTouchOutside(false);
+
+        btContinue.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
     }
 }

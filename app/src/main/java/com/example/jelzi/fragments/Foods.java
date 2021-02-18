@@ -121,10 +121,10 @@ public class Foods extends Fragment {
 
     private void putDayMoments() {
         ArrayList<DayMoment> dayMoments= new ArrayList<>();
-        dayMoments.add(new DayMoment("Mañana"));
-        dayMoments.add(new DayMoment("Mediodia"));
-        dayMoments.add(new DayMoment("Tarde"));
-        dayMoments.add(new DayMoment("Noche"));
+        dayMoments.add(new DayMoment(getResources().getString(R.string.morning)));
+        dayMoments.add(new DayMoment(getResources().getString(R.string.midday)));
+        dayMoments.add(new DayMoment(getResources().getString(R.string.afternoon)));
+        dayMoments.add(new DayMoment(getResources().getString(R.string.night)));
 
         rvDayMoments = binding.rvDayMoments;
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity()){
