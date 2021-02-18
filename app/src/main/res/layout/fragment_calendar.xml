@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".fragments.Calendar">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        style="@style/darkBackground"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+
+        <org.naishadhparmar.zcustomcalendar.CustomCalendar
+            android:id="@+id/CustomCalendar"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:month_year_format="full_month__with_year" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</FrameLayout>

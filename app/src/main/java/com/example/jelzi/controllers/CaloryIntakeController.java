@@ -45,6 +45,9 @@ public class CaloryIntakeController {
         }
         remainCals-=((prot*4)+(fats*9));
         carbs=remainCals/4;
+        if(carbs <= 0){
+            carbs = 0;
+        }
 
         HashMap<String,Integer> macros= new HashMap<String, Integer>();
         macros.put("carbs",carbs);

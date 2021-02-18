@@ -128,7 +128,7 @@ public class Register extends AppCompatActivity {
                     AlertDialog.Builder builder = new AlertDialog.Builder(Register.this);
                     builder.setTitle(getString(R.string.errorregistration));
                     builder.setMessage(getString(R.string.registrationerror));
-                    builder.setPositiveButton(getString(R.string.agree), new DialogInterface.OnClickListener() {
+                    builder.setPositiveButton(getString(R.string.continuar), new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
                             etEmail.setText("");
