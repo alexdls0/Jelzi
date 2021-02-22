@@ -166,7 +166,7 @@ public class Foods extends Fragment {
         @Override
         public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
             int position = viewHolder.getAdapterPosition();
-            databaseReference.child("users/"+mAuth.getCurrentUser().getUid()+"/foods").
+            databaseReference.child("users/"+mAuth.getCurrentUser().getUid()+"/foodEntries").
                     child(foodList.get(position).getFoodKey()).removeValue();
             foodList.remove(position);
             foodAdapter.notifyItemRemoved(position);

@@ -492,8 +492,8 @@ public class Profile extends Fragment {
                             databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
                                 @Override
                                 public void onDataChange(DataSnapshot dataSnapshot) {
-                                    if(dataSnapshot.hasChild("foods")){
-                                        databaseReference.child("/foods").removeValue();
+                                    if(dataSnapshot.hasChild("foodEntries")){
+                                        databaseReference.child("/foodEntries").removeValue();
                                     }
                                 }
                                 @Override
