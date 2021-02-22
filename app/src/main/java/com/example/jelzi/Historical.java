@@ -19,13 +19,17 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.sdsmdg.tastytoast.TastyToast;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class Historical extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
-    private TextView calsDaily, tvFat, tvCarbh, tvProt;
+    private TextView calsDaily, tvFat, tvCarbh, tvProt, tvDay;
     private final Utils utils = new Utils();
     private int totalCals=0, totalFat=0, totalCarbh=0, totalProt=0;
     private String proteins = "prot", carbs = "carbs", fats = "fats", calories = "cals";
+    private String[] timesDay = {"Morning", "Midday", "Afternoon", "Night"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,10 +44,22 @@ public class Historical extends AppCompatActivity {
         tvFat = findViewById(R.id.tvFat);
         tvCarbh = findViewById(R.id.tvCarbh);
         tvProt = findViewById(R.id.tvProt);
+        tvDay = findViewById(R.id.tvDay);
 
         if (utils.isConnected(Historical.this)){
             Intent intent = getIntent();
             String date = intent.getExtras().getString("date");
+            try {
+                String newDate = date.replace("/", "-");
+                SimpleDateFormat inFormat = new SimpleDateFormat("yyyy-MM-dd");
+                Date theDate = inFormat.parse(newDate);
+                SimpleDateFormat outFormat = new SimpleDateFormat("MMMM dd, yyyy");
+                String goal = outFormat.format(theDate);
+                tvDay.setText(goal);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
             DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("users")
                     .child(mAuth.getCurrentUser().getUid()+"/foodEntries")
                     .child(date);
@@ -66,7 +82,10 @@ public class Historical extends AppCompatActivity {
                             }
                         }
                     }
-                    fillWithData();
+                    calsDaily.setText(Integer.toString(totalCals));
+                    tvCarbh.setText(totalCarbh+"g");
+                    tvFat.setText(totalFat+"g");
+                    tvProt.setText(totalProt+"g");
                 }
 
                 @Override
@@ -76,12 +95,5 @@ public class Historical extends AppCompatActivity {
         }else{
             TastyToast.makeText(Historical.this, getString(R.string.connectionlost), TastyToast.LENGTH_LONG, TastyToast.ERROR);
         }
-    }
-
-    private void fillWithData() {
-        calsDaily.setText(Integer.toString(totalCals));
-        tvCarbh.setText(totalCarbh+"g");
-        tvFat.setText(totalFat+"g");
-        tvProt.setText(totalProt+"g");
     }
 }

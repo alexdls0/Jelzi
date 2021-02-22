@@ -16,34 +16,21 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout
+            style="@style/darkBackground"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                style="@style/darkBackground"
+            <TextView
+                android:id="@+id/tvDay"
+                style="@style/dayTitleHistorical"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="wrap_content" />
 
-                <View
-                    android:id="@+id/view4"
-                    android:layout_width="0dp"
-                    android:layout_height="1dp"
-                    android:background="@color/white"
-                    app:layout_constraintBottom_toTopOf="@+id/tvCarbh"
-                    app:layout_constraintEnd_toEndOf="@+id/tvCarbh"
-                    app:layout_constraintStart_toStartOf="@+id/tvCarbh"
-                    app:layout_constraintTop_toBottomOf="@+id/textView2" />
-
-                <View
-                    android:id="@+id/view5"
-                    android:layout_width="0dp"
-                    android:layout_height="1dp"
-                    android:background="@color/white"
-                    app:layout_constraintBottom_toTopOf="@+id/tvProt"
-                    app:layout_constraintEnd_toEndOf="@+id/tvProt"
-                    app:layout_constraintStart_toStartOf="@+id/tvProt"
-                    app:layout_constraintTop_toBottomOf="@+id/textView3" />
+            <androidx.constraintlayout.widget.ConstraintLayout
+                style="@style/historicalMacrosPart"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
                 <TextView
                     android:id="@+id/tvCarbh"
@@ -128,10 +115,30 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <View
-                    android:id="@+id/view2"
-                    android:background="@color/white"
+                    android:id="@+id/view4"
                     android:layout_width="0dp"
                     android:layout_height="1dp"
+                    android:background="@color/white"
+                    app:layout_constraintBottom_toTopOf="@+id/tvCarbh"
+                    app:layout_constraintEnd_toEndOf="@+id/tvCarbh"
+                    app:layout_constraintStart_toStartOf="@+id/tvCarbh"
+                    app:layout_constraintTop_toBottomOf="@+id/textView2" />
+
+                <View
+                    android:id="@+id/view5"
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:background="@color/white"
+                    app:layout_constraintBottom_toTopOf="@+id/tvProt"
+                    app:layout_constraintEnd_toEndOf="@+id/tvProt"
+                    app:layout_constraintStart_toStartOf="@+id/tvProt"
+                    app:layout_constraintTop_toBottomOf="@+id/textView3" />
+
+                <View
+                    android:id="@+id/view2"
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:background="@color/white"
                     app:layout_constraintBottom_toTopOf="@+id/textView4"
                     app:layout_constraintEnd_toEndOf="@+id/textView4"
                     app:layout_constraintStart_toStartOf="@+id/textView4"

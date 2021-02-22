@@ -308,9 +308,23 @@
         <item name="android:textColor">@color/colorWhite</item>
         <item name="android:paddingStart">@dimen/smallMargin</item>
         <item name="android:paddingEnd">@dimen/smallMargin</item>
+        <item name="android:paddingBottom">@dimen/mediumMargin</item>
     </style>
 
     <style name="textMacros.historical">
         <item name="android:layout_marginTop">@dimen/mediumMargin</item>
+    </style>
+
+    <style name="historicalMacrosPart">
+        <item name="android:layout_margin">@dimen/mediumMargin</item>
+        <item name="android:background">@drawable/cards_background</item>
+    </style>
+
+    <style name="dayTitleHistorical">
+        <item name="android:layout_marginTop">@dimen/smallMargin</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/colorWhite</item>
+        <item name="android:textSize">@dimen/mediumSize</item>
+        <item name="android:gravity">center</item>
     </style>
 </resources>
