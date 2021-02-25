@@ -11,7 +11,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".SearchFoodActivity"></activity>
+        <activity android:name=".FoodInsertActivity"></activity>
+        <activity
+            android:name=".SearchFoodActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize" />
         <activity
             android:name=".AuthCheckActivity"
             android:screenOrientation="portrait">
@@ -26,12 +30,15 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".Login"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize" />
         <activity
             android:name=".Register"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".MainActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".MainActivity"
-            android:screenOrientation="portrait"/>
     </application>
 
 </manifest>

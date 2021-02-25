@@ -9,6 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.jelzi.R;
+import com.example.jelzi.interfaces.OnDayMomentClick;
 import com.example.jelzi.model.DayMoment;
 
 import java.util.ArrayList;
@@ -16,9 +17,10 @@ import java.util.ArrayList;
 public class DayMomentsAdapter extends RecyclerView.Adapter<DayMomentsAdapter.ItemHolder> {
 
     private ArrayList<DayMoment> dayMoments;
-
-    public DayMomentsAdapter(ArrayList<DayMoment> dayMoments) {
+    private OnDayMomentClick onDayMomentClick;
+    public DayMomentsAdapter(ArrayList<DayMoment> dayMoments, OnDayMomentClick onDayMomentClick) {
         this.dayMoments=dayMoments;
+        this.onDayMomentClick=onDayMomentClick;
     }
 
     @NonNull
@@ -30,6 +32,13 @@ public class DayMomentsAdapter extends RecyclerView.Adapter<DayMomentsAdapter.It
 
     @Override
     public void onBindViewHolder(@NonNull ItemHolder holder, int position) {
+        View currentView=holder.itemView;
+        currentView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onDayMomentClick.OnFoodClick(dayMoments.get(position));
+            }
+        });
         holder.dayMoment.setText(""+dayMoments.get(position).getName());
         holder.calsTotal.setText(dayMoments.get(position).getCals()+" cals");
     }
@@ -43,6 +52,12 @@ public class DayMomentsAdapter extends RecyclerView.Adapter<DayMomentsAdapter.It
         private TextView dayMoment, calsTotal;
         public ItemHolder(@NonNull View itemView) {
             super(itemView);
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+
+                }
+            });
             dayMoment=itemView.findViewById(R.id.dayMoment);
             calsTotal=itemView.findViewById(R.id.calsTotal);
         }

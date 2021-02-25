@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/darkBackground"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".FoodInsertActivity">
+
+    <TextView
+        android:id="@+id/FoodName"
+        style="@style/FirstCalcTextSelects"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="64dp"
+        android:layout_marginEnd="16dp"
+        android:gravity="center"
+        android:text="Platanito"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout"
+        style="@style/darkBackgroundCards"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/FoodName">
+
+        <TextView
+            android:id="@+id/Cals"
+            style="@style/textMacros"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:text="356 cals"
+            app:layout_constraintBottom_toBottomOf="@+id/servingValue"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/Fats"
+            style="@style/textMacros"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:text="@string/grasa"
+            app:layout_constraintEnd_toStartOf="@+id/Carbs"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/servingValue" />
+
+        <TextView
+            android:id="@+id/textView20"
+            style="@style/textMacros"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:text="@string/serving"
+            app:layout_constraintBottom_toBottomOf="@+id/servingValue"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/ProtValue"
+            style="@style/textMacrosNumbers"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:text="50g"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/Prot"
+            app:layout_constraintStart_toStartOf="@+id/Prot"
+            app:layout_constraintTop_toBottomOf="@+id/Prot" />
+
+        <TextView
+            android:id="@+id/FatsValue"
+            style="@style/textMacrosNumbers"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:text="16g"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/Fats"
+            app:layout_constraintStart_toStartOf="@+id/Fats"
+            app:layout_constraintTop_toBottomOf="@+id/Fats" />
+
+        <TextView
+            android:id="@+id/Carbs"
+            style="@style/textMacros"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:text="@string/carbh"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/servingValue" />
+
+        <TextView
+            android:id="@+id/Prot"
+            style="@style/textMacros"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:text="@string/prot"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/Carbs"
+            app:layout_constraintTop_toBottomOf="@+id/servingValue" />
+
+        <TextView
+            android:id="@+id/CarbsValue"
+            style="@style/textMacrosNumbers"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:text="100g"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/Carbs"
+            app:layout_constraintStart_toStartOf="@+id/Carbs"
+            app:layout_constraintTop_toBottomOf="@+id/Carbs" />
+
+        <EditText
+            android:id="@+id/servingValue"
+            style="@style/edittextServing"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:ems="4"
+            android:gravity="center"
+            android:inputType="number"
+            app:layout_constraintStart_toEndOf="@+id/textView20"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <Button
+        android:id="@+id/BtAddFood"
+        style="@style/buttons"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="@string/addFood"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -10,6 +10,7 @@ import androidx.annotation.RequiresApi;
 import androidx.core.content.ContextCompat;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -26,9 +27,11 @@ import com.example.jelzi.adapter.DayMomentsAdapter;
 import com.example.jelzi.adapter.FoodAdapter;
 import com.example.jelzi.controllers.CaloryIntakeController;
 import com.example.jelzi.databinding.FragmentFoodsBinding;
+import com.example.jelzi.interfaces.OnDayMomentClick;
 import com.example.jelzi.model.DayMoment;
 import com.example.jelzi.model.Food;
 import com.example.jelzi.model.User;
+import com.example.jelzi.model.Utils;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -38,10 +41,11 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.function.Consumer;
 
 import it.xabaras.android.recyclerview.swipedecorator.RecyclerViewSwipeDecorator;
 
-public class Foods extends Fragment {
+public class Foods extends Fragment implements OnDayMomentClick {
 
     private RecyclerView rvFoods;
     private RecyclerView rvDayMoments;
@@ -50,8 +54,11 @@ public class Foods extends Fragment {
     private DayMomentsAdapter dayMomentsAdapter;
     private FirebaseAuth mAuth;
     private DatabaseReference databaseReference;
+    private DatabaseReference databaseReferenceDayMoment;
     private FragmentFoodsBinding binding;
     private User user;
+    private Utils utils;
+    public ArrayList<Food> foods= new ArrayList<>();
 
     public Foods() {
         // Required empty public constructor
@@ -77,6 +84,7 @@ public class Foods extends Fragment {
     }
 
     private void init() {
+        utils=new Utils();
         binding.addFood.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -133,11 +141,62 @@ public class Foods extends Fragment {
                 return false;
             }
         };
-        rvDayMoments.setLayoutManager(new LinearLayoutManager(getContext()));
-        dayMomentsAdapter=new DayMomentsAdapter(dayMoments);
+        rvDayMoments.setLayoutManager(new GridLayoutManager(getContext(),2));
+        dayMomentsAdapter=new DayMomentsAdapter(dayMoments,this);
         rvDayMoments.setAdapter(dayMomentsAdapter);
         rvDayMoments.setNestedScrollingEnabled(false);
+        for (DayMoment dayMoment:dayMoments) {
+            getDayMomentFood(dayMoment);
+        }
+    }
 
+    private void getDayMomentFood(DayMoment dayMoment) {
+        mAuth = FirebaseAuth.getInstance();
+        databaseReferenceDayMoment =  FirebaseDatabase.getInstance().getReference().child("users")
+                    .child(mAuth.getCurrentUser().getUid())
+                    .child("foodEntries")
+                    .child(utils.getYearMonth())
+                    .child(utils.getDay())
+                    .child(dayMoment.name.toLowerCase());
+
+        databaseReferenceDayMoment.addValueEventListener(new ValueEventListener() {
+                @RequiresApi(api = Build.VERSION_CODES.M)
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
+                        snapshot.getChildren().forEach(new Consumer<DataSnapshot>() {
+                            @Override
+                            public void accept(DataSnapshot dataSnapshot) {
+                                foods.add(dataSnapshot.getValue(Food.class));
+                                System.out.println("daymoment "+dayMoment.name+ " food "+dataSnapshot.getValue(Food.class));
+                            }
+                        });
+                        dayMoment.cals=calcCals();
+                        dayMoment.foods=foods;
+                        System.out.println(foods);
+                        dayMomentsAdapter.notifyDataSetChanged();
+                        
+                    }
+
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+
+                }
+            });
+    }
+
+    private void putDayMomentFood(ArrayList<Food> foods) {
+
+    }
+
+    private int calcCals() {
+        int cals=0;
+        for (Food food:foods) {
+            cals+=food.getCals();
+        }
+        return cals;
     }
 
     private void putDayData() {
@@ -147,41 +206,22 @@ public class Foods extends Fragment {
         //macros and cals data
         binding.calsDaily.setText(String.valueOf(user.dailyCals));
         binding.currentCals.setText(String.valueOf(actualCalsOfDay));
+
         binding.tvProt.setText("0"+" / "+user.prot+"g");
         binding.tvCarbh.setText("0"+" / "+user.carbs+"g");
         binding.tvFat.setText("0"+" / "+user.fats+"g");
 
         //progressCals data
         binding.progressCals.setTotal(user.dailyCals);
+
         binding.progressCals.setProgress(1200,true);
 
     }
 
 
-    ItemTouchHelper.SimpleCallback simpleCallback = new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.RIGHT) {
-        @Override
-        public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
-            return false;
-        }
-
-        @Override
-        public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
-            int position = viewHolder.getAdapterPosition();
-            databaseReference.child("users/"+mAuth.getCurrentUser().getUid()+"/foods").
-                    child(foodList.get(position).getFoodKey()).removeValue();
-            foodList.remove(position);
-            foodAdapter.notifyItemRemoved(position);
-        }
-
-        @Override
-        public void onChildDraw(@NonNull Canvas c, @NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder
-                viewHolder, float dX, float dY, int actionState, boolean isCurrentlyActive) {
-            new RecyclerViewSwipeDecorator.Builder(c, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive)
-                    .addSwipeRightBackgroundColor(ContextCompat.getColor(getContext(), R.color.colorRed))
-                    .addSwipeRightActionIcon(R.drawable.ic_delete)
-                    .create()
-                    .decorate();
-            super.onChildDraw(c, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive);
-        }
-    };
+    @Override
+    public void OnFoodClick(DayMoment dayMoment) {
+        dayMomentsAdapter.notifyDataSetChanged();
+        System.out.println(dayMoment.toString());
+    }
 }

@@ -10,6 +10,10 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import com.example.jelzi.R;
+
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -80,5 +84,44 @@ public class Utils {
                 dialog.dismiss();
             }
         });
+    }
+    public String getDayMoment() {
+        Date dt = Calendar.getInstance().getTime();
+        SimpleDateFormat sdf = new SimpleDateFormat("kk");
+        int time = Integer.valueOf(sdf.format(dt));
+        System.out.println(time);
+        if(time>=7 && time<12){
+            return "morning";
+        }
+        if(time>=12 && time<17){
+            return "midday";
+        }
+        if(time>=17 && time<20){
+            return "afternoon";
+        }
+        if(time>=20 && time<=24){
+            return "night";
+        }
+        if(time<7){
+            return "night";
+        }
+        return "time";
+    }
+
+    public String getDay() {
+        Calendar c = Calendar.getInstance();
+        int day = c.get(Calendar.DAY_OF_MONTH);
+
+        return String.valueOf(day);
+    }
+
+    public String getYearMonth() {
+        Calendar c = Calendar.getInstance();
+        int year = c.get(Calendar.YEAR);
+        int month = c.get(Calendar.MONTH)+1;
+        if (month<10){
+            return year+"-0"+month;
+        }
+        return year+"-"+month;
     }
 }

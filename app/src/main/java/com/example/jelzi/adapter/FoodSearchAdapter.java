@@ -9,20 +9,23 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.jelzi.R;
+import com.example.jelzi.interfaces.OnFoodClick;
 import com.example.jelzi.model.Food;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
+import java.util.NoSuchElementException;
 
 public class FoodSearchAdapter extends RecyclerView.Adapter<FoodSearchAdapter.ItemHolder>{
     private HashMap<Long,Food> dataholder;
     Iterator it ;
+    OnFoodClick foodClick;
 
-    public FoodSearchAdapter(HashMap<Long,Food> dataholder) {
+    public FoodSearchAdapter(HashMap<Long,Food> dataholder, OnFoodClick foodClick) {
         this.dataholder = dataholder;
-        it= dataholder.entrySet().iterator();
+        this.foodClick=foodClick;
     }
 
     @NonNull
@@ -34,12 +37,22 @@ public class FoodSearchAdapter extends RecyclerView.Adapter<FoodSearchAdapter.It
 
     @Override
     public void onBindViewHolder(@NonNull FoodSearchAdapter.ItemHolder holder, int position) {
+        View currentView=holder.itemView;
+        it= dataholder.entrySet().iterator();
         int p = 0;
         while (it.hasNext()) {
             if (p == position) {
                 Map.Entry pair = (Map.Entry) it.next();
-                holder.tvCals.setText(""+((Food)pair.getValue()).getCals());
-                break;
+                System.out.println(position+" "+((Food)pair.getValue()).getFoodName());
+                currentView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        foodClick.OnFoodClick((Food)pair.getValue());
+                    }
+                });
+                holder.tvFoodName.setText(""+((Food)pair.getValue()).getFoodName());
+            }else{
+                it.next();
             }
             p++;
         }

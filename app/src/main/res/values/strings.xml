@@ -82,4 +82,6 @@
     <string name="highProteinDiet">High protein diet</string>
     <string name="normalDiet">Normal diet</string>
     <string name="continuar">Continue</string>
+    <string name="serving">Serving size (g):</string>
+    <string name="addFood">Add food</string>
 </resources>

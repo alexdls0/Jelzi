@@ -180,4 +180,116 @@
         <item name="android:textColor">@color/colorWhite</item>
         <item name="android:textColorHint">@color/colorWhite</item>
     </style>
+    <style name="optionsProfileDialog">
+        <item name="android:background">@color/colorBackground</item>
+        <item name="android:padding">@dimen/smallMargin</item>
+    </style>
+
+    <style name="optionsProfileDialogUsernameEt">
+        <item name="android:layout_marginTop">@dimen/smallMargin</item>
+        <item name="android:layout_marginStart">@dimen/smallMargin</item>
+        <item name="android:layout_marginEnd">@dimen/smallMargin</item>
+        <item name="android:textColor">@color/colorWhite</item>
+        <item name="android:background">@drawable/rect_shape</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:paddingTop">@dimen/smallMargin</item>
+        <item name="android:paddingBottom">@dimen/smallMargin</item>
+        <item name="android:paddingStart">@dimen/mediumMargin</item>
+        <item name="android:paddingEnd">@dimen/negativemediumMargin</item>
+    </style>
+
+    <style name="optionsProfileDialogUsernameBt">
+        <item name="android:layout_marginTop">@dimen/mediumMargin</item>
+        <item name="android:layout_marginStart">@dimen/smallMargin</item>
+        <item name="android:layout_marginEnd">@dimen/smallMargin</item>
+        <item name="android:textColor">@color/colorWhite</item>
+        <item name="android:background">@drawable/btn_bg_logout</item>
+    </style>
+
+    <style name="optionsProfileDialogBtChange">
+        <item name="android:layout_marginTop">@dimen/mediumMargin</item>
+        <item name="android:layout_marginStart">@dimen/smallMargin</item>
+        <item name="android:layout_marginEnd">@dimen/smallMargin</item>
+        <item name="android:textColor">@color/colorGreen</item>
+        <item name="android:background">@drawable/btn_bg_change</item>
+    </style>
+
+    <style name="profileRemoveTracingText">
+        <item name="android:layout_marginTop">@dimen/smallMargin</item>
+        <item name="android:textSize">@dimen/halfMediumSize</item>
+        <item name="android:layout_marginStart">@dimen/smallMargin</item>
+        <item name="android:layout_marginEnd">@dimen/smallMargin</item>
+        <item name="android:textColor">@color/colorWhite</item>
+    </style>
+
+    <style name="dialogErrorTitle">
+        <item name="android:layout_marginTop">@dimen/smallMargin</item>
+        <item name="android:textSize">@dimen/mediumSize</item>
+        <item name="android:layout_marginStart">@dimen/smallMargin</item>
+        <item name="android:layout_marginEnd">@dimen/smallMargin</item>
+        <item name="android:textColor">@color/colorWhite</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="dialogErrorText">
+        <item name="android:layout_marginTop">@dimen/mediumMargin</item>
+        <item name="android:textSize">@dimen/halfMediumSize</item>
+        <item name="android:layout_marginStart">@dimen/smallMargin</item>
+        <item name="android:layout_marginEnd">@dimen/smallMargin</item>
+        <item name="android:textColor">@color/colorWhite</item>
+    </style>
+
+    <style name="profileLogout.continueButton">
+        <item name="android:layout_marginTop">@dimen/mediumMargin</item>
+    </style>
+
+    <style name="forgotPassDialog">
+        <item name="android:layout_marginTop">@dimen/smallMargin</item>
+        <item name="android:textSize">@dimen/mediumSize</item>
+        <item name="android:layout_marginStart">@dimen/smallMargin</item>
+        <item name="android:layout_marginEnd">@dimen/smallMargin</item>
+        <item name="android:textColor">@color/colorWhite</item>
+    </style>
+
+    <style name="forgotPassDialogMessage">
+        <item name="android:layout_marginTop">@dimen/smallMargin</item>
+        <item name="android:textSize">@dimen/halfMediumSize</item>
+        <item name="android:layout_marginStart">@dimen/smallMargin</item>
+        <item name="android:layout_marginEnd">@dimen/smallMargin</item>
+        <item name="android:textColor">@color/colorWhite</item>
+    </style>
+
+    <style name="forgotPassEt">
+        <item name="android:layout_marginTop">@dimen/smallMargin</item>
+        <item name="android:layout_marginStart">@dimen/smallMargin</item>
+        <item name="android:layout_marginEnd">@dimen/smallMargin</item>
+        <item name="android:textSize">@dimen/halfMediumSize</item>
+        <item name="android:textColor">@color/colorWhite</item>
+        <item name="android:background">@drawable/rect_shape</item>
+        <item name="android:paddingTop">@dimen/smallMargin</item>
+        <item name="android:paddingBottom">@dimen/smallMargin</item>
+        <item name="android:paddingStart">@dimen/smallMargin</item>
+    </style>
+
+    <style name="dialogGenderMarginTop">
+        <item name="android:layout_marginTop">@dimen/smallMargin</item>
+    </style>
+
+    <style name="FirstCalcTextSelects.dialogGenderMarginTop">
+        <item name="android:layout_marginTop">@dimen/smallMargin</item>
+    </style>
+
+    <style name="FirstCalcTextSelects.dialogGenderMarginBottom">
+        <item name="android:layout_marginBottom">@dimen/smallMargin</item>
+    </style>
+
+    <style name="FirstCalcTextSelects.dialogObjectivePaddingBottom">
+        <item name="android:paddingBottom">@dimen/smallMargin</item>
+    </style>
+    <style name="edittextServing">
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textColorHint">@color/white</item>
+        <item name="android:backgroundTint">@color/white</item>
+        <item name="android:textSize">@dimen/textSize</item>
+    </style>
 </resources>
