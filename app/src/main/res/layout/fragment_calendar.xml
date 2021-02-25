@@ -9,13 +9,15 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         style="@style/darkBackground"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" >
+        android:layout_height="match_parent">
 
         <org.naishadhparmar.zcustomcalendar.CustomCalendar
             android:id="@+id/CustomCalendar"
-            android:layout_width="match_parent"
+            style="@style/calendar"
+            android:layout_width="0dp"
             android:layout_height="match_parent"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:month_year_format="full_month__with_year" />
     </androidx.constraintlayout.widget.ConstraintLayout>

@@ -11,6 +11,7 @@ import androidx.cardview.widget.CardView;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -79,7 +80,8 @@ public class Profile extends Fragment {
         if(utils.isConnected(getActivity())){
             buildUser();
         }else{
-            TastyToast.makeText(getActivity(), getString(R.string.connectionlost), TastyToast.LENGTH_LONG, TastyToast.ERROR);
+            TastyToast.makeText(getActivity(), getString(R.string.connectionlostandlogout), TastyToast.LENGTH_LONG, TastyToast.ERROR);
+            doLogout();
         }
 
         cvUsername.setBackgroundColor(ContextCompat.getColor(getContext(), android.R.color.transparent));
@@ -97,7 +99,7 @@ public class Profile extends Fragment {
                 AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
                 View dialogView = getLayoutInflater().inflate(R.layout.dialog_profile_username, null);
                 final EditText username = dialogView.findViewById(R.id.etProfileDialogUsername);
-                username.setText(user.getUserName());
+                username.setText(user != null ? user.getUserName(): "");
                 Button btChange = dialogView.findViewById(R.id.btChange);
 
                 builder.setView(dialogView);
@@ -107,17 +109,19 @@ public class Profile extends Fragment {
                 btChange.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        String name = username.getText().toString();
-                        if(!name.isEmpty() && utils.checkUsername(name)){
-                            if (utils.isConnected(getActivity())){
-                                user.setUserName(name);
-                                saveTracingFirebase();
-                                dialog.dismiss();
+                        if(user != null){
+                            String name = username.getText().toString();
+                            if(!name.isEmpty() && utils.checkUsername(name)){
+                                if (utils.isConnected(getActivity())){
+                                    user.setUserName(name);
+                                    saveTracingFirebase();
+                                    dialog.dismiss();
+                                }else{
+                                    TastyToast.makeText(getActivity(), getString(R.string.connectionlost), TastyToast.LENGTH_LONG, TastyToast.ERROR);
+                                }
                             }else{
-                                TastyToast.makeText(getActivity(), getString(R.string.connectionlost), TastyToast.LENGTH_LONG, TastyToast.ERROR);
+                                TastyToast.makeText(getActivity(), getString(R.string.usernameerror), TastyToast.LENGTH_LONG, TastyToast.ERROR);
                             }
-                        }else{
-                            TastyToast.makeText(getActivity(), getString(R.string.usernameerror), TastyToast.LENGTH_LONG, TastyToast.ERROR);
                         }
                     }
                 });
@@ -133,14 +137,15 @@ public class Profile extends Fragment {
                 NumberPicker AgePicker=((NumberPicker) dialogView.findViewById(R.id.numberPicker));
                 AgePicker.setMinValue(16);
                 AgePicker.setMaxValue(99);
-                AgePicker.setValue(user.getAge());
-                AgePicker.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
-                    @Override
-                    public void onValueChange(NumberPicker numberPicker, int i, int i1) {
-                        user.setAge(i1);
-                    }
-                });
-
+                AgePicker.setValue(user != null ? user.getAge(): 16);
+                if(user != null){
+                    AgePicker.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
+                        @Override
+                        public void onValueChange(NumberPicker numberPicker, int i, int i1) {
+                            user.setAge(i1);
+                        }
+                    });
+                }
                 builder.setView(dialogView);
                 final AlertDialog dialog = builder.create();
                 dialog.show();
@@ -172,7 +177,7 @@ public class Profile extends Fragment {
                 none.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        user.setActivity(1.2);
+                        if(user != null){ user.setActivity(1.2); }
                         none.setTextColor(getContext().getResources().getColor(R.color.colorGreen));
                         low.setTextColor(getContext().getResources().getColor(R.color.colorWhite));
                         mid.setTextColor(getContext().getResources().getColor(R.color.colorWhite));
@@ -183,7 +188,7 @@ public class Profile extends Fragment {
                 low.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        user.setActivity(1.375);
+                        if(user != null){ user.setActivity(1.375); }
                         none.setTextColor(getContext().getResources().getColor(R.color.colorWhite));
                         low.setTextColor(getContext().getResources().getColor(R.color.colorGreen));
                         mid.setTextColor(getContext().getResources().getColor(R.color.colorWhite));
@@ -194,7 +199,7 @@ public class Profile extends Fragment {
                 mid.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        user.setActivity(1.55);
+                        if(user != null){ user.setActivity(1.55); }
                         none.setTextColor(getContext().getResources().getColor(R.color.colorWhite));
                         low.setTextColor(getContext().getResources().getColor(R.color.colorWhite));
                         mid.setTextColor(getContext().getResources().getColor(R.color.colorGreen));
@@ -205,7 +210,7 @@ public class Profile extends Fragment {
                 high.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        user.setActivity(1.725);
+                        if(user != null){ user.setActivity(1.725); }
                         none.setTextColor(getContext().getResources().getColor(R.color.colorWhite));
                         low.setTextColor(getContext().getResources().getColor(R.color.colorWhite));
                         mid.setTextColor(getContext().getResources().getColor(R.color.colorWhite));
@@ -216,7 +221,7 @@ public class Profile extends Fragment {
                 prof.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        user.setActivity(1.9);
+                        if(user != null){ user.setActivity(1.9); }
                         none.setTextColor(getContext().getResources().getColor(R.color.colorWhite));
                         low.setTextColor(getContext().getResources().getColor(R.color.colorWhite));
                         mid.setTextColor(getContext().getResources().getColor(R.color.colorWhite));
@@ -250,11 +255,13 @@ public class Profile extends Fragment {
                 NumberPicker HeightPicker=((NumberPicker) dialogView.findViewById(R.id.numberPicker));
                 HeightPicker.setMinValue(50);
                 HeightPicker.setMaxValue(250);
-                HeightPicker.setValue(user.getHeight());
+                HeightPicker.setValue(user != null ? user.getHeight(): 50);
                 HeightPicker.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
                     @Override
                     public void onValueChange(NumberPicker numberPicker, int i, int i1) {
-                        user.setHeight(i1);
+                        if(user != null){
+                            user.setHeight(i1);
+                        }
                     }
                 });
 
@@ -283,11 +290,13 @@ public class Profile extends Fragment {
                 NumberPicker WeightPicker=((NumberPicker) dialogView.findViewById(R.id.numberPicker));
                 WeightPicker.setMinValue(30);
                 WeightPicker.setMaxValue(200);
-                WeightPicker.setValue(user.getWeight());
+                WeightPicker.setValue(user != null ? user.getWeight(): 30);
                 WeightPicker.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
                     @Override
                     public void onValueChange(NumberPicker numberPicker, int i, int i1) {
-                        user.setWeight(i1);
+                        if(user != null){
+                            user.setWeight(i1);
+                        }
                     }
                 });
 
@@ -320,7 +329,9 @@ public class Profile extends Fragment {
                 menButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        user.setGender(false);
+                        if(user != null){
+                            user.setGender(false);
+                        }
                         menIcon.setImageResource(R.drawable.ic_male_selected);
                         womenIcon.setImageResource(R.drawable.ic_female);
                     }
@@ -328,7 +339,9 @@ public class Profile extends Fragment {
                 menIcon.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        user.setGender(false);
+                        if(user != null){
+                            user.setGender(false);
+                        }
                         menIcon.setImageResource(R.drawable.ic_male_selected);
                         womenIcon.setImageResource(R.drawable.ic_female);
                     }
@@ -336,7 +349,9 @@ public class Profile extends Fragment {
                 womenIcon.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        user.setGender(true);
+                        if(user != null){
+                            user.setGender(true);
+                        }
                         menIcon.setImageResource(R.drawable.ic_male);
                         womenIcon.setImageResource(R.drawable.ic_female_selected);
                     }
@@ -344,7 +359,9 @@ public class Profile extends Fragment {
                 womenButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        user.setGender(true);
+                        if(user != null){
+                            user.setGender(true);
+                        }
                         menIcon.setImageResource(R.drawable.ic_male);
                         womenIcon.setImageResource(R.drawable.ic_female_selected);
                     }
@@ -379,7 +396,7 @@ public class Profile extends Fragment {
                 loss.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        user.setObjective(1);
+                        if(user != null){ user.setObjective(1); }
                         loss.setTextColor(getContext().getResources().getColor(R.color.colorGreen));
                         maint.setTextColor(getContext().getResources().getColor(R.color.colorWhite));
                         gain.setTextColor(getContext().getResources().getColor(R.color.colorWhite));
@@ -388,7 +405,7 @@ public class Profile extends Fragment {
                 maint.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        user.setObjective(2);
+                        if(user != null){ user.setObjective(2); }
                         loss.setTextColor(getContext().getResources().getColor(R.color.colorWhite));
                         maint.setTextColor(getContext().getResources().getColor(R.color.colorGreen));
                         gain.setTextColor(getContext().getResources().getColor(R.color.colorWhite));
@@ -397,7 +414,7 @@ public class Profile extends Fragment {
                 gain.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        user.setObjective(3);
+                        if(user != null){ user.setObjective(3); }
                         loss.setTextColor(getContext().getResources().getColor(R.color.colorWhite));
                         maint.setTextColor(getContext().getResources().getColor(R.color.colorWhite));
                         gain.setTextColor(getContext().getResources().getColor(R.color.colorGreen));
@@ -432,7 +449,9 @@ public class Profile extends Fragment {
                 normal.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        user.setHighProtein(false);
+                        if(user != null){
+                            user.setHighProtein(false);
+                        }
                         normal.setTextColor(getContext().getResources().getColor(R.color.colorGreen));
                         hightProtein.setTextColor(getContext().getResources().getColor(R.color.colorWhite));
                     }
@@ -440,7 +459,9 @@ public class Profile extends Fragment {
                 hightProtein.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        user.setHighProtein(true);
+                        if(user != null){
+                            user.setHighProtein(true);
+                        }
                         normal.setTextColor(getContext().getResources().getColor(R.color.colorWhite));
                         hightProtein.setTextColor(getContext().getResources().getColor(R.color.colorGreen));
                     }
@@ -465,10 +486,7 @@ public class Profile extends Fragment {
         btLogout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mAuth.signOut();
-                Intent intent = new Intent(getActivity(), Login.class);
-                startActivity(intent);
-                getActivity().finish();
+                doLogout();
             }
         });
 
@@ -492,8 +510,8 @@ public class Profile extends Fragment {
                             databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
                                 @Override
                                 public void onDataChange(DataSnapshot dataSnapshot) {
-                                    if(dataSnapshot.hasChild("foods")){
-                                        databaseReference.child("/foods").removeValue();
+                                    if(dataSnapshot.hasChild("foodEntries")){
+                                        databaseReference.child("/foodEntries").removeValue();
                                     }
                                 }
                                 @Override
@@ -503,7 +521,6 @@ public class Profile extends Fragment {
                             databaseReference.child("/tracing/dailyCals").removeValue();
                             Intent intent = new Intent(getActivity(), MainActivity.class);
                             startActivity(intent);
-                            getActivity().finish();
                         }else{
                             TastyToast.makeText(getActivity(), getString(R.string.connectionlost), TastyToast.LENGTH_LONG, TastyToast.ERROR);
                         }
@@ -520,6 +537,13 @@ public class Profile extends Fragment {
         });
 
         return view;
+    }
+
+    private void doLogout(){
+        mAuth.signOut();
+        Intent intent = new Intent(getActivity(), Login.class);
+        startActivity(intent);
+        getActivity().finish();
     }
 
     private void buildUser() {
@@ -540,7 +564,6 @@ public class Profile extends Fragment {
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-
             }
         });
     }
@@ -580,15 +603,15 @@ public class Profile extends Fragment {
 
         switch (Double.toString(user.getActivity())){
             case "1.2":{
-                tvActivity.setText(getString(R.string.lowActivity));
+                tvActivity.setText(getString(R.string.noneActivity));
                 break;
             }
             case "1.375": {
-                tvActivity.setText(getString(R.string.midActivity));
+                tvActivity.setText(getString(R.string.lowActivity));
                 break;
             }
             case "1.55": {
-                tvActivity.setText(getString(R.string.strongActivity));
+                tvActivity.setText(getString(R.string.midActivity));
                 break;
             }
             case "1.725": {
@@ -600,16 +623,6 @@ public class Profile extends Fragment {
                 break;
             }
         }
-    }
-
-    public void updateUser() {
-        user.tmb =caloryIntakeController.calcTMB(user.height,user.weight,user.age,user.gender);
-        System.out.println("tmb: "+user.tmb);
-        user.dailyCals=caloryIntakeController.calcDailyCalsIntake(user.tmb,user.activity,user.objective);;
-        System.out.println("dailyCals: "+user.dailyCals);
-        System.out.println("macros: "+caloryIntakeController.calcMacros(user.dailyCals,user.weight,user.isHighProtein()));
-        System.out.println(user);
-        saveTracingFirebase();
     }
 
     private void saveTracingFirebase() {
