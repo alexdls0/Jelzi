@@ -229,7 +229,7 @@
         <item name="android:textSize">@dimen/mediumSize</item>
         <item name="android:layout_marginStart">@dimen/smallMargin</item>
         <item name="android:layout_marginEnd">@dimen/smallMargin</item>
-        <item name="android:textColor">@color/colorWhite</item>
+        <item name="android:textColor">@color/colorRed</item>
         <item name="android:textStyle">bold</item>
     </style>
 

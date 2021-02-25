@@ -4,7 +4,6 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -184,7 +183,6 @@ public class Login extends AppCompatActivity {
                             @Override
                             public void onFailure(@NonNull Exception e) {
                                 TastyToast.makeText(Login.this, getString(R.string.emailsenterror), TastyToast.LENGTH_LONG, TastyToast.ERROR);
-                                dialog.dismiss();
                             }
                         });
                     }else{

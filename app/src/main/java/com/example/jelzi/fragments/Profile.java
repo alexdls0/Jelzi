@@ -11,6 +11,7 @@ import androidx.cardview.widget.CardView;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -503,7 +504,6 @@ public class Profile extends Fragment {
                             databaseReference.child("/tracing/dailyCals").removeValue();
                             Intent intent = new Intent(getActivity(), MainActivity.class);
                             startActivity(intent);
-                            getActivity().finish();
                         }else{
                             TastyToast.makeText(getActivity(), getString(R.string.connectionlost), TastyToast.LENGTH_LONG, TastyToast.ERROR);
                         }
@@ -540,7 +540,6 @@ public class Profile extends Fragment {
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-
             }
         });
     }
@@ -580,15 +579,15 @@ public class Profile extends Fragment {
 
         switch (Double.toString(user.getActivity())){
             case "1.2":{
-                tvActivity.setText(getString(R.string.lowActivity));
+                tvActivity.setText(getString(R.string.noneActivity));
                 break;
             }
             case "1.375": {
-                tvActivity.setText(getString(R.string.midActivity));
+                tvActivity.setText(getString(R.string.lowActivity));
                 break;
             }
             case "1.55": {
-                tvActivity.setText(getString(R.string.strongActivity));
+                tvActivity.setText(getString(R.string.midActivity));
                 break;
             }
             case "1.725": {
@@ -600,16 +599,6 @@ public class Profile extends Fragment {
                 break;
             }
         }
-    }
-
-    public void updateUser() {
-        user.tmb =caloryIntakeController.calcTMB(user.height,user.weight,user.age,user.gender);
-        System.out.println("tmb: "+user.tmb);
-        user.dailyCals=caloryIntakeController.calcDailyCalsIntake(user.tmb,user.activity,user.objective);;
-        System.out.println("dailyCals: "+user.dailyCals);
-        System.out.println("macros: "+caloryIntakeController.calcMacros(user.dailyCals,user.weight,user.isHighProtein()));
-        System.out.println(user);
-        saveTracingFirebase();
     }
 
     private void saveTracingFirebase() {
