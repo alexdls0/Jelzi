@@ -174,6 +174,7 @@ public class Foods extends Fragment implements OnDayMomentClick {
                         dayMoment.cals=calcCals();
                         dayMoment.foods=foods;
                         System.out.println(foods);
+                        foods.removeAll(foods);
                         dayMomentsAdapter.notifyDataSetChanged();
                         
                     }
