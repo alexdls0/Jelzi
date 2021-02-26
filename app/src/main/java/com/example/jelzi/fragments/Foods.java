@@ -47,7 +47,7 @@ import it.xabaras.android.recyclerview.swipedecorator.RecyclerViewSwipeDecorator
 
 public class Foods extends Fragment implements OnDayMomentClick {
 
-    private RecyclerView rvFoods;
+    //private RecyclerView rvFoods;
     private RecyclerView rvDayMoments;
     private ArrayList<Food> foodList;
     private FoodAdapter foodAdapter;

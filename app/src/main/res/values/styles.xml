@@ -334,4 +334,18 @@
         <item name="android:textSize">@dimen/mediumSize</item>
         <item name="android:gravity">center</item>
     </style>
+
+    <style name="textDaymoment">
+        <item name="android:layout_marginTop">@dimen/smallMargin</item>
+        <item name="android:textColor">@color/colorWhite</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">@dimen/textSize</item>
+    </style>
+
+    <style name="textCals">
+        <item name="android:layout_marginTop">@dimen/smallMargin</item>
+        <item name="android:textColor">@color/colorWhite</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">@dimen/mediumSize</item>
+    </style>
 </resources>
