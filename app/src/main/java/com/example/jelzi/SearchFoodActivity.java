@@ -55,6 +55,7 @@ public class SearchFoodActivity extends AppCompatActivity implements OnFoodClick
     }
 
     private void init() {
+
         binding.searchInput.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

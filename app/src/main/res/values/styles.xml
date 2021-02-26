@@ -84,9 +84,10 @@
     </style>
 
     <style name="SearchViewStyle" parent="Widget.AppCompat.SearchView">
-        <item name="android:textColor">@color/white</item>
-        <item name="android:editTextColor">@color/white</item>
-        <item name="android:textColorHint">@color/colorGrey</item>
+        <item name="android:background">@drawable/search_background</item>
+        <item name="android:layout_marginStart">@dimen/searchFood</item>
+        <item name="android:layout_marginTop">@dimen/searchFood</item>
+        <item name="android:layout_marginEnd">@dimen/searchFood</item>
     </style>
 
     <style name="textUser">

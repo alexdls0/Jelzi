@@ -3,8 +3,6 @@ package com.example.jelzi.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import java.math.BigDecimal;
-
 public class Food implements Parcelable {
     private long foodId;
     private String foodName;

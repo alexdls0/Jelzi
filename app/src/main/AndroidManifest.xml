@@ -11,7 +11,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Historical"></activity>
+        <activity android:name=".Historical"
+            android:screenOrientation="portrait"/>
         <activity android:name=".FoodInsertActivity"></activity>
         <activity
             android:name=".SearchFoodActivity"
