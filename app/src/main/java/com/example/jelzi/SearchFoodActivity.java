@@ -103,7 +103,7 @@ public class SearchFoodActivity extends AppCompatActivity implements OnFoodClick
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        finish();
+        this.finish();
         overridePendingTransition(R.anim.slide_down_in,R.anim.slide_down_out);
     }
 
@@ -112,7 +112,7 @@ public class SearchFoodActivity extends AppCompatActivity implements OnFoodClick
         Intent intent = new Intent(this, FoodInsertActivity.class);
         intent.putExtra("food",food);
         startActivity(intent);
-        finish();
+        this.finish();
         overridePendingTransition(R.anim.slide_up_out,R.anim.slide_up_in);
     }
 
@@ -126,7 +126,7 @@ public class SearchFoodActivity extends AppCompatActivity implements OnFoodClick
             for (CompactFood food: foods) {
                 long id= food.getId();
                 com.example.jelzi.model.Food food1=new com.example.jelzi.model.Food();
-                food1.setFoodId(id);
+                food1.setFoodId(String.valueOf(id));
                 food1.setFoodName(food.getName());
                 foodList.put(id,food1);
                 foodAdapter.notifyDataSetChanged();

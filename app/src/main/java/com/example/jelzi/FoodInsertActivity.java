@@ -56,7 +56,7 @@ public class FoodInsertActivity extends AppCompatActivity {
         requestQueue = Volley.newRequestQueue(this);
         FoodInsertActivity.Listener listener = new FoodInsertActivity.Listener();
         req = new Request(key, secret, listener);
-        req.getFood(requestQueue,food.getFoodId());
+        req.getFood(requestQueue,Long.valueOf(food.getFoodId()));
     }
 
     private void init() {
@@ -138,7 +138,7 @@ public class FoodInsertActivity extends AppCompatActivity {
                 .push();
         databaseReference.setValue(food);
 
-        finish();
+        this.finish();
         overridePendingTransition(R.anim.slide_down_in,R.anim.slide_down_out);
     }
 
@@ -171,7 +171,7 @@ public class FoodInsertActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        finish();
+        this.finish();
         overridePendingTransition(R.anim.slide_down_in,R.anim.slide_down_out);
     }
 

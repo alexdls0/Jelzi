@@ -87,4 +87,5 @@
     <string name="connectionlostandlogout">Session closed due to no internet connection</string>
     <string name="serving">Serving size (g):</string>
     <string name="addFood">Add food</string>
+    <string name="servingItem">Serving</string>
 </resources>

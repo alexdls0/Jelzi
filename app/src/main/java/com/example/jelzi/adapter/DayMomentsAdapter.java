@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.jelzi.R;
 import com.example.jelzi.interfaces.OnDayMomentClick;
 import com.example.jelzi.model.DayMoment;
+import com.example.jelzi.model.Food;
 
 import java.util.ArrayList;
 
@@ -47,7 +48,15 @@ public class DayMomentsAdapter extends RecyclerView.Adapter<DayMomentsAdapter.It
     public int getItemCount() {
         return dayMoments.size();
     }
-
+    public void putFoods(DayMoment dayMoment, ArrayList<Food> foods){
+        for (DayMoment moment:dayMoments) {
+            if (moment.equals(dayMoment)){
+                moment.foods=foods;
+                System.out.println("moment actualizado "+moment.toString());
+            }
+        }
+        notifyDataSetChanged();
+    }
     public class ItemHolder extends RecyclerView.ViewHolder {
         private TextView dayMoment, calsTotal;
         public ItemHolder(@NonNull View itemView) {

@@ -4,7 +4,7 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 public class Food implements Parcelable {
-    private long foodId;
+    private String foodId;
     private String foodName;
     private int fat, prot, carbh;
     private int cals;
@@ -12,7 +12,7 @@ public class Food implements Parcelable {
 
 
     public Food(){
-        this.foodId=0;
+        this.foodId="";
         this.foodName = "";
         this.fat = 0;
         this.prot = 0;
@@ -31,7 +31,7 @@ public class Food implements Parcelable {
 
 
     protected Food(Parcel in) {
-        foodId = in.readLong();
+        foodId = in.readString();
         foodName = in.readString();
         fat = in.readInt();
         prot = in.readInt();
@@ -52,11 +52,11 @@ public class Food implements Parcelable {
         }
     };
 
-    public long getFoodId() {
+    public String getFoodId() {
         return foodId;
     }
 
-    public void setFoodId(long foodId) {
+    public void setFoodId(String foodId) {
         this.foodId = foodId;
     }
 
@@ -128,7 +128,7 @@ public class Food implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel parcel, int i) {
-        parcel.writeLong(foodId);
+        parcel.writeString(foodId);
         parcel.writeString(foodName);
         parcel.writeInt(fat);
         parcel.writeInt(prot);

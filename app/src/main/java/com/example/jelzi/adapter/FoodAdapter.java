@@ -23,17 +23,15 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.ItemHolder>{
     @NonNull
     @Override
     public ItemHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_food,parent,false);
+        View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_food_macros,parent,false);
         return new ItemHolder(itemView);
     }
 
     @Override
     public void onBindViewHolder(@NonNull ItemHolder holder, int position) {
-        holder.tvCals.setText(""+dataholder.get(position).getCals());
-        holder.tvFoodName.setText(""+dataholder.get(position).getFoodName());
-        holder.tvCarbh.setText(""+dataholder.get(position).getCarbh());
-        holder.tvProt.setText(""+dataholder.get(position).getProt());
-        holder.tvFat.setText(""+dataholder.get(position).getFat());
+        holder.tvCals.setText(dataholder.get(position).getCals()+" cals");
+        holder.tvFoodName.setText(dataholder.get(position).getFoodName());
+        holder.tvServingSize.setText(dataholder.get(position).getCals()+"g");
     }
 
     @Override
@@ -42,15 +40,13 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.ItemHolder>{
     }
 
     public class ItemHolder extends RecyclerView.ViewHolder {
-        private TextView tvFoodName, tvFat, tvCarbh, tvProt, tvCals;
+        private TextView tvFoodName, tvServingSize, tvCals;
 
         public ItemHolder(@NonNull View itemView) {
             super(itemView);
             tvFoodName = itemView.findViewById(R.id.tvFoodName);
-            tvFat = itemView.findViewById(R.id.tvFat);
-            tvCarbh = itemView.findViewById(R.id.tvCarbh);
-            tvProt = itemView.findViewById(R.id.tvProt);
-            tvCals = itemView.findViewById(R.id.currentCals);
+            tvServingSize = itemView.findViewById(R.id.tvServingSize);
+            tvCals = itemView.findViewById(R.id.tvCalsItem);
         }
     }
 }

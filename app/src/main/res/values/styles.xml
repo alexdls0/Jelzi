@@ -139,6 +139,9 @@
     <style name="darkBackgroundCards">
         <item name="android:background">@drawable/cards_background</item>
     </style>
+    <style name="darkBackgroundCardsRemove">
+        <item name="android:background">@drawable/cards_background_remove</item>
+    </style>
     <style name="profileOptions">
         <item name="android:textColor">@color/colorWhite</item>
         <item name="android:textSize">@dimen/halfMediumSize</item>

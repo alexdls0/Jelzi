@@ -28,7 +28,7 @@ public class Historical extends AppCompatActivity {
     private TextView calsDaily, tvFat, tvCarbh, tvProt, tvDay;
     private final Utils utils = new Utils();
     private int totalCals=0, totalFat=0, totalCarbh=0, totalProt=0;
-    private String proteins = "prot", carbs = "carbs", fats = "fats", calories = "cals";
+    private String proteins = "prot", carbs = "carbh", fats = "fat", calories = "cals";
     private String[] timesDay = {"Morning", "Midday", "Afternoon", "Night"};
 
     @Override

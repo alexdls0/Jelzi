@@ -48,12 +48,16 @@ public class DayMoment implements Parcelable {
         this.cals = cals;
     }
 
+    public void setFoods(ArrayList<Food> foods) {
+        this.foods = foods;
+    }
+
     @Override
     public String toString() {
         return "DayMoment{" +
                 "name='" + name + '\'' +
                 ", cals=" + cals +
-                ", foods=" + foods +
+                ", foods=" + foods.toString() +
                 '}';
     }
 
