@@ -155,6 +155,12 @@
                     app:layout_constraintTop_toBottomOf="@+id/textView5" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvDayMoments"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/smallMargin"/>
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
 

@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.widget.Toast;
@@ -53,31 +54,43 @@ public class DayMomentActivity extends AppCompatActivity {
 
     private void init() {
 
-        ItemTouchHelper.SimpleCallback simpleItemTouchCallback = new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT | ItemTouchHelper.DOWN | ItemTouchHelper.UP) {
+        Intent previous = getIntent();
+        String goal = previous.getExtras().getString("dateDayMoment");
 
-            @Override
-            public boolean onMove(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, RecyclerView.ViewHolder target) {
-                return false;
-            }
+        if(goal == null){
+            ItemTouchHelper.SimpleCallback simpleItemTouchCallback = new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT | ItemTouchHelper.DOWN | ItemTouchHelper.UP) {
 
-            @Override
-            public void onSwiped(RecyclerView.ViewHolder viewHolder, int swipeDir) {
-                //Remove swiped item from list and notify the RecyclerView
-                int position = viewHolder.getAdapterPosition();
-                Food food=foods.get(position);
-                foods.remove(food);
-                removeFromFirebase(food);
-                foodAdapter.notifyDataSetChanged();
-                putValues();
-            }
-        };
+                @Override
+                public boolean onMove(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, RecyclerView.ViewHolder target) {
+                    return false;
+                }
 
-        ItemTouchHelper itemTouchHelper = new ItemTouchHelper(simpleItemTouchCallback);
-        itemTouchHelper.attachToRecyclerView(binding.rvFoodList);
+                @Override
+                public void onSwiped(RecyclerView.ViewHolder viewHolder, int swipeDir) {
+                    //Remove swiped item from list and notify the RecyclerView
+                    int position = viewHolder.getAdapterPosition();
+                    Food food=foods.get(position);
+                    foods.remove(food);
+                    removeFromFirebase(food);
+                    foodAdapter.notifyDataSetChanged();
+                    putValues();
+                }
+            };
+
+            ItemTouchHelper itemTouchHelper = new ItemTouchHelper(simpleItemTouchCallback);
+            itemTouchHelper.attachToRecyclerView(binding.rvFoodList);
+        }
+
         binding.rvFoodList.setLayoutManager(new LinearLayoutManager(this));
         foodAdapter= new FoodAdapter(foods);
         binding.rvFoodList.setAdapter(foodAdapter);
-        binding.tvDayMoment.setText(dayMoment.getName());
+
+
+        if(goal != null){
+            binding.tvDayMoment.setText(goal+": "+dayMoment.getName());
+        }else{
+            binding.tvDayMoment.setText(dayMoment.getName());
+        }
 
         putValues();
     }
