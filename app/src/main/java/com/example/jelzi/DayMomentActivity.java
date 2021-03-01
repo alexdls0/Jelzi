@@ -10,7 +10,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
-import android.widget.Toast;
 
 import com.example.jelzi.adapter.FoodAdapter;
 import com.example.jelzi.databinding.ActivityDayMomentBinding;

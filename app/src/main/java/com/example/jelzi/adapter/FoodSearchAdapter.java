@@ -12,11 +12,9 @@ import com.example.jelzi.R;
 import com.example.jelzi.interfaces.OnFoodClick;
 import com.example.jelzi.model.Food;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
-import java.util.NoSuchElementException;
 
 public class FoodSearchAdapter extends RecyclerView.Adapter<FoodSearchAdapter.ItemHolder>{
     private HashMap<Long,Food> dataholder;

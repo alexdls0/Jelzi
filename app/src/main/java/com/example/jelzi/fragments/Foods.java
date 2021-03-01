@@ -6,11 +6,9 @@ import android.os.Build;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -19,9 +17,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.jelzi.DayMomentActivity;
-import com.example.jelzi.Login;
 import com.example.jelzi.R;
-import com.example.jelzi.Register;
 import com.example.jelzi.SearchFoodActivity;
 import com.example.jelzi.adapter.DayMomentsAdapter;
 import com.example.jelzi.controllers.CaloryIntakeController;
@@ -41,8 +37,6 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.function.Consumer;
-
-import it.xabaras.android.recyclerview.swipedecorator.RecyclerViewSwipeDecorator;
 
 public class Foods extends Fragment implements OnDayMomentClick {
 
@@ -76,12 +70,6 @@ public class Foods extends Fragment implements OnDayMomentClick {
         getUser();
 
         foodList = new ArrayList<>();
-        //rvFoods.setLayoutManager(new LinearLayoutManager(getContext()));
-        //foodAdapter = new FoodAdapter(foodList);
-        //rvFoods.setAdapter(foodAdapter);
-        //ItemTouchHelper itemTouchHelper = new ItemTouchHelper(simpleCallback);
-        //itemTouchHelper.attachToRecyclerView(rvFoods);
-
         return view;
     }
 
@@ -227,15 +215,6 @@ public class Foods extends Fragment implements OnDayMomentClick {
 
             }
         });
-    }
-
-
-    private int calcCals() {
-        int cals=0;
-        for (Food food:foods) {
-            cals+=food.getCals();
-        }
-        return cals;
     }
 
     private void putDayData() {

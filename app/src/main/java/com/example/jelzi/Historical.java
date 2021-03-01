@@ -10,18 +10,13 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
-import android.provider.ContactsContract;
-import android.util.Log;
 import android.widget.TextView;
 
 import com.example.jelzi.adapter.DayMomentsAdapter;
-import com.example.jelzi.databinding.FragmentFoodsBinding;
 import com.example.jelzi.interfaces.OnDayMomentClick;
 import com.example.jelzi.model.DayMoment;
 import com.example.jelzi.model.Food;
-import com.example.jelzi.model.User;
 import com.example.jelzi.model.Utils;
-import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;

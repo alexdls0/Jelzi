@@ -15,7 +15,6 @@ import android.widget.TextView;
 
 import com.example.jelzi.Historical;
 import com.example.jelzi.R;
-import com.example.jelzi.Register;
 import com.example.jelzi.model.Utils;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
