@@ -150,7 +150,8 @@ public class FoodInsertActivity extends AppCompatActivity {
             servings=foodSearched.getServings();
             Serving serving=null;
             for (Serving servingSave:servings) {
-                serving=servingSave;
+                if (servingSave!=null)
+                    serving=servingSave;
             }
             System.out.println("Calories "+serving.getCalories()+" amount "+serving.getMetricServingAmount()+" serving metric unit "+serving.getMetricServingUnit());
             food.setCals(serving.getCalories().intValue());
