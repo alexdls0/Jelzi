@@ -152,6 +152,7 @@ public class MainActivity extends AppCompatActivity implements FirstCalcInterfac
 
     private void launchSession() {
         Intent intent=new Intent(this, Tracing.class);
+        this.finish();
         startActivity(intent);
     }
 
