@@ -519,6 +519,7 @@ public class Profile extends Fragment {
                             });
                             databaseReference.child("/tracing/dailyCals").removeValue();
                             Intent intent = new Intent(getActivity(), MainActivity.class);
+                            getActivity().finish();
                             startActivity(intent);
                         }else{
                             TastyToast.makeText(getActivity(), getString(R.string.connectionlost), TastyToast.LENGTH_LONG, TastyToast.ERROR);

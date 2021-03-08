@@ -119,10 +119,10 @@ public class Foods extends Fragment implements OnDayMomentClick {
 
     private void putDayMoments() {
         ArrayList<DayMoment> dayMoments= new ArrayList<>();
-        dayMoments.add(new DayMoment(getResources().getString(R.string.morning)));
-        dayMoments.add(new DayMoment(getResources().getString(R.string.midday)));
-        dayMoments.add(new DayMoment(getResources().getString(R.string.afternoon)));
-        dayMoments.add(new DayMoment(getResources().getString(R.string.night)));
+        dayMoments.add(new DayMoment("Morning"));
+        dayMoments.add(new DayMoment("Midday"));
+        dayMoments.add(new DayMoment("Afternoon"));
+        dayMoments.add(new DayMoment("Night"));
 
         rvDayMoments = binding.rvDayMoments;
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity()){
