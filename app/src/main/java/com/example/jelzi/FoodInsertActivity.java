@@ -122,7 +122,7 @@ public class FoodInsertActivity extends AppCompatActivity {
     }
 
     public void addFood(){
-        mAuth = FirebaseAuth.getInstance();;
+        mAuth = FirebaseAuth.getInstance();
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference()
                 .child("users")
                 .child(mAuth.getCurrentUser().getUid())

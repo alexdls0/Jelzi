@@ -111,8 +111,15 @@ public class Utils {
     public String getDay() {
         Calendar c = Calendar.getInstance();
         int day = c.get(Calendar.DAY_OF_MONTH);
+        String daydate;
 
-        return String.valueOf(day);
+        if(day < 10){
+            daydate ="0"+day;
+        }else{
+            daydate = ""+day;
+        }
+
+        return daydate;
     }
 
     public String getYearMonth() {
